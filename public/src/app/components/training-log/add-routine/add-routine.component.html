@@ -1,46 +1,57 @@
-<div class="form">
-    <mat-card>
-      <mat-card-title>Add Routine</mat-card-title>
-      <mat-card-content>
-        <form (ngSubmit)="addRoutine(routineForm)" [formGroup]="routineForm" fxLayoutGap="20px">
-          <p>
-            <mat-form-field>
-              <input 
-                type="text" 
-                formControlName="title"
-                matInput 
-                placeholder="Title">
-                <mat-error *ngIf="routineForm.get('title').hasError('required')">Title is required.</mat-error>
-                <mat-error *ngIf="routineForm.get('title').hasError('minlength')">Title must be at least 5 symbols</mat-error>
+<mat-horizontal-stepper #stepper [linear]="true">
+  <mat-step [stepControl]="routineNameForm">
+    <form [formGroup]="routineNameForm">
+      <ng-template matStepLabel>Fill out the name of routine</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Routine name" formControlName="name" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="exercisesForm">
+    <form [formGroup]="exercisesForm">
+      <ng-template matStepLabel>Fill out exercises in routine</ng-template>
+
+      <div formArrayName="exercises">
+        <div *ngFor="let exercise of exercisesFormGroup.controls; let i = index;" 
+          class="exercise-container">
+          
+          <p (focus)="isInputClicked = true"
+          (blur)="isInputClicked = false">
+            <mat-form-field [formGroupName]="i">
+             
+              <mat-label>Choose exercise</mat-label>
+                <mat-select formControlName="exerciseName">
+                  <mat-optgroup *ngFor="let group of exerciseNames | keyvalue" [label]="group.key"
+                                [disabled]="group.disabled"> 
+                  <mat-option *ngFor="let exerciseName of exerciseNames[group.key]" [value]="exerciseName.name">
+                    {{exerciseName.name}}
+                  </mat-option> 
+                </mat-optgroup>
+              </mat-select> 
+
             </mat-form-field>
+            <span *ngIf="isInputClicked" class="btn-delete" (click)="removeExercise(i)"><mat-icon>clear</mat-icon></span>  
           </p>
           
-          <div formArrayName="exercises">
-            <p *ngFor="let exercise of exercisesFormGroup.controls; let i = index;">
-              <mat-form-field [formGroupName]="i">
-                <input 
-                  type="text" 
-                  formControlName="name"
-                  matInput 
-                  placeholder="Exercise">
-                  <!-- <mat-error *ngIf="routineForm.get('name').hasError('required')">Exercise name is required.</mat-error>
-                  <mat-error *ngIf="routineForm.get('name').hasError('minlength')">Exercise name must be at least 5 symbols</mat-error> -->
-              </mat-form-field>
-            </p>
-          </div>
+        </div>
+      </div>
 
-          <span class="btn-icon" (click)="addExercise()"><mat-icon color="primary">add_circle</mat-icon></span>
-    
-          <div class="button">
-            <button 
-              type="submit" 
-              [disabled]="routineForm.invalid" 
-              mat-raised-button 
-              color="primary">
-              Add Routine</button>
-          </div>
-  
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
+      <span class="btn-icon" (click)="addExercise()"><mat-icon color="primary">add_circle</mat-icon></span>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="addRoutine()">Add Routine</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

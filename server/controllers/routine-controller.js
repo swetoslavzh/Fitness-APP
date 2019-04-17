@@ -1,35 +1,10 @@
 const Routine = require('../models/Routine');
 const UserRoutine = require('../models/UserRoutine');
-const jwt = require('jsonwebtoken')
-
-function validateRoutine(title, exercises) {
-  const errors = {};
-  let isFormValid = true;
-  let message = '';
-
-  if (typeof title === 'undefined' || typeof exercises === "undefined") {
-    isFormValid = false;
-    errors.error = 'not all values are provided';
-  }
-
-  return {
-    success: isFormValid,
-    message,
-    errors
-  }
-}
-
-function getId(token) {
-  if (typeof token === "undefined") {
-    return 'token is undefined';
-  }
-  const decoded = jwt.decode(token, {complete: true});
-  return decoded.payload.sub;
-}
+const sharedService = require('../services/shared.service');
 
 module.exports = {
   userGetRoutine: (req, res) => {
-    const id = getId(req.body.token);
+    const id = sharedService.getId(req.body.token);
 
     UserRoutine.find({userID: id})
       .then((routines) => {
@@ -43,11 +18,15 @@ module.exports = {
       })
   },
   userAddRoutine: (req, res) => {
-    const { token, routine, comment } = req.body;
-    const date = Date.now();
-    const id = getId(token);
+    const { token, name, routine } = req.body;
+    const id = sharedService.getId(token);
+    let arrOfExercises = [];
 
-    UserRoutine.create({ userID: id, routine, date, comment })
+    for (let item of routine) {
+      arrOfExercises.push(item.exerciseName);
+    }
+
+    UserRoutine.create({ userID: id, name, routine: arrOfExercises })
       .then(() => {
         return res.status(200).json({
           success: true,
@@ -77,18 +56,20 @@ module.exports = {
       });
   },
   sampleRoutinePOST: (req, res) => {
-    const { title, exercises } = req.body;
+    const { name, exercises } = req.body;
 
-    Routine.create({title, exercises})
+    Routine.create({name, exercises})
       .then(() => {
         return res.status(200).json({
           success: true,
           message: 'You have successfully added a new sample routine.'
         })
       })
-      .catch(() => {
-        const error = "Routine with this name already exists";
-        return done(error)
+      .catch((err) => {
+        return res.status(200).json({
+          success: false,
+          message: err.message
+        });
       }); 
   },
   sampleRoutineDELETE: (req, res) => {

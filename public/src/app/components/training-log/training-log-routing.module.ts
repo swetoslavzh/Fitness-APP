@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
 import { HistoryComponent } from './history/history.component';
 import { GraphComponent } from './graph/graph.component';
-import { AddExerciseComponent } from './add-exercise/add-exercise.component';
+import { AddExerciseComponent } from './workout/add-exercise/add-exercise.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
+import { ExerciseNamesResolver } from 'src/app/core/resolvers/exercise-names.resolver';
+import { AddWorkoutComponent } from './add-workout/add-workout.component';
 
 const routes: Routes = [
   {
@@ -30,7 +32,12 @@ const routes: Routes = [
   },
   {
     path: 'addRoutine',
-    component: AddRoutineComponent
+    component: AddRoutineComponent,
+    resolve: { exerciseNames: ExerciseNamesResolver }
+  },
+  {
+    path: 'addWorkout/:id',
+    component: AddWorkoutComponent
   }
 ];
 

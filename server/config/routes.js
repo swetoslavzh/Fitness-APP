@@ -12,4 +12,10 @@ router.get('/routine', controllers.routine.sampleRoutineGET);
 router.post('/user/addRoutine', controllers.routine.userAddRoutine);
 router.post('/user/getRoutine', controllers.routine.userGetRoutine);
 
+router.post('/user/sampleRoutines', controllers.routine.sampleRoutinePOST);
+router.get('/user/sampleRoutines', controllers.routine.sampleRoutineGET);
+
+router.post('/workout/addExercise', controllers.exercise.exercisePOST);
+router.get('/workout/exerciseNames', controllers.exercise.exerciseNamesGET);
+
 module.exports = router;

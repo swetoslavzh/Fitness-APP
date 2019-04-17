@@ -1,0 +1,15 @@
+.btn-delete {
+  mat-icon {
+    color: red;
+    float: right;
+    font-size: 1em;
+    cursor: pointer;
+  }
+}
+
+.exercise-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+

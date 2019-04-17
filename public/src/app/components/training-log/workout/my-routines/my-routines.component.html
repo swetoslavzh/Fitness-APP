@@ -5,14 +5,19 @@
                            *ngFor="let routine of (routines$ | async)">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{routine.routine.title}}
+            {{routine.name}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p class="exercise-titles" *ngFor="let exercise of routine.routine.exercises">
-          <mat-icon>label_important</mat-icon> {{exercise.title}}
+        <p class="exercise-titles" *ngFor="let exercise of routine.routine">
+          <mat-icon>label_important</mat-icon> {{exercise}}
         </p>
-        <button class="btn-inner" mat-stroked-button color="primary" *ngIf="panelOpenState">Start workout</button>
+        <a 
+          class="btn-inner" 
+          mat-stroked-button 
+          color="primary" 
+          *ngIf="panelOpenState" 
+          [routerLink]="['/training-log/addWorkout', routine._id]">Start workout</a>
       </mat-expansion-panel>
   </mat-accordion>
-  <button mat-stroked-button color="primary" *ngIf="!panelOpenState">Start workout</button>
+  <!-- <button mat-stroked-button color="primary" *ngIf="!panelOpenState">Start workout</button> -->
 </div>

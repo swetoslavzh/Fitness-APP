@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { WorkoutService } from 'src/app/core/services/workout.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoutineService } from 'src/app/core/services/routine.service';
 
 @Component({
   selector: 'app-add-routine',
@@ -8,30 +13,40 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 })
 export class AddRoutineComponent implements OnInit {
 
-  routineForm: FormGroup;
+  routineNameForm: FormGroup;
+  exercisesForm: FormGroup;
   exercises: FormArray;
+  isInputClicked: boolean = false;
+  exerciseNames;
   
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private routineService: RoutineService
   ) { }
 
   ngOnInit() {
-    this.routineForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
+    this.routineNameForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(5)]]
+    });
+
+    this.exercisesForm = this.fb.group({
       exercises: this.fb.array([ this.createExercise() ])
     });
 
-    this.exercises = this.routineForm.get('exercises') as FormArray;
+    this.exercises = this.exercisesForm.get('exercises') as FormArray;
+    this.exerciseNames = this.route.snapshot.data.exerciseNames.data;
   }
 
   createExercise(): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]]
+      exerciseName: ['', [Validators.required]]
     });
   }
 
   get exercisesFormGroup() {
-    return this.routineForm.get('exercises') as FormArray;
+    return this.exercisesForm.get('exercises') as FormArray;
   }
 
   addExercise() {
@@ -42,8 +57,14 @@ export class AddRoutineComponent implements OnInit {
     this.exercises.removeAt(index);
   }
 
-  addRoutine(form) {
-    console.log(form.value);
+  addRoutine() {
+    const name = this.routineNameForm.value.name;
+    const exercises = this.exercisesForm.value.exercises;
+
+    this.routineService.addRoutine(name, exercises)
+      .subscribe(() => {
+        this.router.navigate(['/training-log']);
+      })
   }
 
 }

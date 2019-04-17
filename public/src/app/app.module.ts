@@ -15,13 +15,14 @@ import { HomeComponent } from './components/home/home.component';
 import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
 import { AuthModule } from './components/auth/auth.module';
 import { CalculateModule } from './components/calculate/calculate.module';
+import { keyValueFilterPipe } from './components/shared/keyValueFilter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-
+    keyValueFilterPipe,
   ],
   imports: [
     BrowserModule,

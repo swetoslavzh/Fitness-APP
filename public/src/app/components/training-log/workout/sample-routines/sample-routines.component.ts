@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RoutineService } from 'src/app/core/services/routine.service';
 
 @Component({
   selector: 'app-sample-routines',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SampleRoutinesComponent implements OnInit {
 
-  constructor() { }
+  routines$: Observable<any>;
+  panelOpenState: boolean = false;
+
+  constructor(
+    private routineService: RoutineService
+  ) { }
 
   ngOnInit() {
+    this.routines$ = this.routineService.getSampleRoutines();
   }
 
 }

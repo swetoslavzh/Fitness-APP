@@ -1,3 +1,17 @@
-<p>
-  sample-routines works!
-</p>
+<div class="my-routines-container">
+  <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true;"
+                           (closed)="panelOpenState = false;"
+                           *ngFor="let routine of (routines$ | async)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{routine.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="exercise-titles" *ngFor="let exercise of routine.exercises">
+          <mat-icon>label_important</mat-icon> {{exercise.title}}
+        </p>
+        <button class="btn-inner" mat-stroked-button color="primary" *ngIf="panelOpenState">Start workout</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+</div>

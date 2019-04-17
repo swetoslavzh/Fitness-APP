@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
 
 const userUserRoutineSchema = new mongoose.Schema({
-  routine: Object,
+  name: {
+    required: true,
+    type: mongoose.Schema.Types.String
+  },
+  routine: {
+    required: true,
+    type: Array
+  },
   userID: {
     type: mongoose.Schema.Types.ObjectId,
     required: true
-  },
-  date: {
-    type: mongoose.Schema.Types.Date,
-    required: true
-  },
-  comment: {
-    type: mongoose.Schema.Types.String,
-    required: false
   }
 });
 
