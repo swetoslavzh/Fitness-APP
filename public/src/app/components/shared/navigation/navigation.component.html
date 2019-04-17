@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    <ul fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
+      <li><a routerLink="/home" fxFlexAlign="start">Home</a></li>
+  
+      <ng-template [ngIf]="!isAuth()">
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
+      </ng-template>
+  
+      <ng-template [ngIf]="!!isAuth()">
+        <li><a routerLink="/training-log/overview">Training Log</a></li>
+        <li><a routerLink="/logout" (click)="logout()">Logout</a></li>
+      </ng-template>
+    </ul>
+  </mat-toolbar>

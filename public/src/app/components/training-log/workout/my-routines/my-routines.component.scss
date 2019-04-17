@@ -1,0 +1,17 @@
+.exercise-titles {
+  display: flex;
+  align-items: center;
+}
+
+mat-accordion {
+  width: 80%;
+}
+
+.my-routines-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-inner {
+  float: right;
+}

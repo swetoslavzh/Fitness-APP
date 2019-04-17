@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Lato', sans-serif;}
+
+.form {
+  & {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+  
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+  
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.btn-icon {
+  mat-icon {
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}

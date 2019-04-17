@@ -1,0 +1,21 @@
+<h2>My Routines</h2>
+<app-my-routines></app-my-routines>
+<mat-divider></mat-divider>
+
+<h2>Sample Routines</h2>
+<app-sample-routines></app-sample-routines>
+<mat-divider></mat-divider>
+
+<a
+  class="btn-add" 
+  mat-raised-button 
+  color="primary"
+  routerLink="/training-log/addRoutine">
+  Add new routine</a>
+
+<a 
+  class="btn-add" 
+  mat-raised-button 
+  color="primary"
+  (click)="openDialog()">
+  Add new exercise</a> 

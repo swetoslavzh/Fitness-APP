@@ -1,0 +1,52 @@
+<div class="form">
+  <mat-card>
+      <mat-card-title>Register</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="register()" [formGroup]="registerForm" fxLayoutGap="20px">
+        <p>
+          <mat-form-field>
+            <input 
+              type="text" 
+              formControlName="name"
+              matInput 
+              placeholder="Name">
+              <mat-error *ngIf="registerForm.get('name').hasError('required')">Name is required.</mat-error>
+          </mat-form-field>
+        </p>
+  
+        <p>
+          <mat-form-field>
+            <input 
+              type="email" 
+              formControlName="email"
+              matInput 
+              placeholder="Email">
+              <mat-error *ngIf="registerForm.get('email').hasError('required')">Email is required.</mat-error>
+              <mat-error *ngIf="registerForm.get('email').hasError('email')">Email is invalid.</mat-error>
+          </mat-form-field>
+        </p>
+  
+        <p>
+          <mat-form-field>
+            <input 
+              type="password" 
+              formControlName="password"
+              matInput 
+              placeholder="Password">
+              <mat-error *ngIf="registerForm.get('password').hasError('required')">Password is required.</mat-error>
+      <mat-error *ngIf="registerForm.get('password').hasError('minlength')">Password must be at least 4 symbols.</mat-error>
+          </mat-form-field>
+        </p>
+        <div class="button">
+          <button 
+            type="submit" 
+            [disabled]="registerForm.invalid" 
+            mat-raised-button 
+            color="primary">
+            Login</button>
+        </div>
+  
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
