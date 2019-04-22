@@ -15,14 +15,18 @@ import { HomeComponent } from './components/home/home.component';
 import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
 import { AuthModule } from './components/auth/auth.module';
 import { CalculateModule } from './components/calculate/calculate.module';
-import { keyValueFilterPipe } from './components/shared/keyValueFilter.pipe';
+import { KeyValueFilterPipe } from './components/shared/keyValueFilter.pipe';
+import { CreateArrayPipe } from './components/shared/createArray.pipe';
+import { FooterComponent } from './components/shared/footer/footer.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    keyValueFilterPipe,
+    KeyValueFilterPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -24,14 +24,12 @@
   <mat-error *ngIf="exerciseForm.get('group').hasError('minlength') || exerciseForm.get('group').hasError('maxlength')">Group must be between 3 and 10 symbols.</mat-error>
       </mat-form-field>
     </p>
-    <div class="button">
-      <button 
-        type="submit" 
-        [disabled]="exerciseForm.invalid" 
-        mat-raised-button 
-        color="primary">
-        Add exercise</button>
-    </div>
+    <button 
+      type="submit" 
+      [disabled]="exerciseForm.invalid" 
+      mat-raised-button 
+      color="primary">
+      Add exercise</button>
   
   </form>
 </div>

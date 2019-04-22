@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
@@ -15,7 +15,20 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(tap((success) => {
-      
+      if (success instanceof HttpResponse) {
+        const url = success.url;
+
+        if (url.endsWith('addExercise')) {
+          this.snackBar.open(success['body'].message, '', {
+            duration: 4000
+          });
+        }
+        if (url.endsWith('postWorkout')) {
+          this.snackBar.open(success['body'].message, '', {
+            duration: 4000
+          })
+        }
+      }
     }), catchError((err) => {
       this.snackBar.open(err.error.message, 'Undo', {
         duration: 4000,

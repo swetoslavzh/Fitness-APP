@@ -5,9 +5,9 @@ module.exports = {
 
   },
   exercisePOST: (req, res) => {
-    const { token, exerciseName, group } = req.body;
+    const { name, group } = req.body;
 
-    ExerciseName.create({name: exerciseName, group})
+    ExerciseName.create({ name: name.toLowerCase(), group: group.toLowerCase() })
       .then(() => {
         return res.status(200).json({
           success: true,

@@ -17,5 +17,8 @@ router.get('/user/sampleRoutines', controllers.routine.sampleRoutineGET);
 
 router.post('/workout/addExercise', controllers.exercise.exercisePOST);
 router.get('/workout/exerciseNames', controllers.exercise.exerciseNamesGET);
+router.post('/workout/getWorkout', controllers.workout.getWorkout);
+router.post('/workout/postWorkout', controllers.workout.postWorkout);
+router.post('/workout/history', controllers.workout.getHistory);
 
 module.exports = router;

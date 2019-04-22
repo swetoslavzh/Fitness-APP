@@ -14,7 +14,7 @@ export class RoutineService {
     private http: HttpClient
   ) { }
 
-  getMyRoutines() {
+  getUserRoutines() {
     return this.http.post(`${this.userUrl}/getRoutine`, { token });
   }
 

@@ -1,0 +1,38 @@
+.form {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.measure-container {
+  display: flex;
+  justify-content: space-around;
+
+  mat-form-field:first-of-type {
+    margin-right: 1em;
+  }
+}
+
+.gender-container {
+  mat-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  mat-radio-button {
+    margin-right: 1.5rem;
+  }
+}
+
+.card {
+  width: 70%;
+  padding: 1em;
+  margin: 0 auto;
+}
+
+.calorie {
+  font-weight: 700;
+}
+
+mat-card {
+  margin-bottom: 2.5rem;
+}

@@ -20,13 +20,22 @@ module.exports = {
   userAddRoutine: (req, res) => {
     const { token, name, routine } = req.body;
     const id = sharedService.getId(token);
-    let arrOfExercises = [];
 
-    for (let item of routine) {
-      arrOfExercises.push(item.exerciseName);
+    for (let exercise of routine) {
+      let setsArr = [];
+      let exerciseKey = sharedService.generateAcronym(exercise.exerciseName);
+
+      for (let i = 0; i < exercise.sets; i++) {
+        setsArr.push({
+          "value": `${exerciseKey}${i}`,
+          "kg": `${exerciseKey}${i}_kg`,
+          "rep": `${exerciseKey}${i}_rep`
+        });
+      }
+      exercise.sets = setsArr;
     }
 
-    UserRoutine.create({ userID: id, name, routine: arrOfExercises })
+    UserRoutine.create({ userID: id, name, routine })
       .then(() => {
         return res.status(200).json({
           success: true,
@@ -56,10 +65,10 @@ module.exports = {
       });
   },
   sampleRoutinePOST: (req, res) => {
-    const { name, exercises } = req.body;
+    const { name, routine } = req.body;
 
-    Routine.create({name, exercises})
-      .then(() => {
+    Routine.create({name, routine })
+      .then((_data) => {
         return res.status(200).json({
           success: true,
           message: 'You have successfully added a new sample routine.'

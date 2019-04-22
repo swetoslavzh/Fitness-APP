@@ -8,6 +8,13 @@ function getId(token) {
   return decoded.payload.sub;
 }
 
+function generateAcronym(text) {
+  return text
+    .split(/\s/)
+    .reduce((accumulator, word) => accumulator + word.charAt(0), '');
+}
+
 module.exports = {
-  getId
+  getId,
+  generateAcronym
 }

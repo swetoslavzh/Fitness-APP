@@ -1,3 +1,64 @@
-<p>
-  one-rep-max works!
-</p>
+<div class="form">
+  <mat-card>
+    <mat-card-title>One rep MAX</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="calculate()" [formGroup]="onerepmaxForm" fxLayoutGap="20px">
+        <p class="lift-container">
+          <mat-form-field>
+            <input type="number" [min]="0" formControlName="lift" placeholder="Lift" autocomplete="off" matInput>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Select an mass unit</mat-label>
+            <mat-select formControlName="massunit" [value]="selected">
+                <mat-option value="kg">kg</mat-option> 
+                <mat-option value="lbs">lbs</mat-option> 
+            </mat-select> 
+          </mat-form-field>
+        </p>
+      
+        <p>
+          <mat-form-field>
+            <input type="number" formControlName="sets" placeholder="Sets" autocomplete="off" matInput>
+          </mat-form-field>
+        </p>
+        <div class="button">
+          <button 
+            type="submit" 
+            [disabled]="onerepmaxForm.invalid" 
+            mat-raised-button 
+            color="primary">
+            Calculate</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template [ngIf]="liftData.length">
+  <mat-divider></mat-divider>
+  <h2>Your one rep max is {{oneRepMax}}</h2>
+
+  <table mat-table [dataSource]="liftData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="percentage">
+      <th mat-header-cell *matHeaderCellDef> Percentage of 1RM </th>
+      <td mat-cell *matCellDef="let element"> {{element.percentage}}% </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Lift Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} {{selected}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="reps">
+      <th mat-header-cell *matHeaderCellDef> Repetitions of 1RM </th>
+      <td mat-cell *matCellDef="let element"> {{element.reps}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</ng-template>

@@ -1,21 +1,51 @@
-<h2>My Routines</h2>
-<app-my-routines></app-my-routines>
-<mat-divider></mat-divider>
+<!-- <form [formGroup]="workoutForm" (ngSubmit)="submitWorkoutForm()">
+  <h2>{{workout.name}}</h2>
 
-<h2>Sample Routines</h2>
-<app-sample-routines></app-sample-routines>
-<mat-divider></mat-divider>
+  <div class="exerciseForm" formArrayName="exercise" *ngFor="let exercise of workout.routine; let i = index;">
+    <table [formGroupName]="i">
+      <span *ngIf="!exercise.isCalled">{{ addNext(exercise)}}</span> 
+      <caption>{{exercise.exerciseName}}</caption>
+      <th>#</th>
+      <th>KG</th>
+      <th>REPS</th>
+      <tr *ngFor="let rep of (exercise.sets | createArray)">
+        <td>{{rep}}</td>
+        <td><input [min]="0" type="number" formControlName="kg" autocomplete="off"></td>
+        <td><input [min]="0" type="number" formControlName="reps" autocomplete="off"></td>
+      </tr>
+    </table>
+  </div>
 
-<a
-  class="btn-add" 
-  mat-raised-button 
-  color="primary"
-  routerLink="/training-log/addRoutine">
-  Add new routine</a>
+  <button type="submit" mat-raised-button color="primary">Add workout</button>
+</form> -->
 
-<a 
-  class="btn-add" 
-  mat-raised-button 
-  color="primary"
-  (click)="openDialog()">
-  Add new exercise</a> 
+<!-- ######################### <WORKING> ######################### -->
+<form #form="ngForm" (ngSubmit)="submitWorkoutForm(form.value)">
+
+  <h2>{{workout.name}}</h2>
+
+  <div class="exerciseForm" *ngFor="let exercise of workout.routine; let i = index;" [ngModelGroup]="exercise.exerciseName">
+    <table>
+      <caption>{{exercise.exerciseName}}</caption>
+      <thead>
+        <th>#</th>
+        <th>KG</th>
+        <th>REPS</th>
+      </thead>
+      <tbody>
+        <tr [ngModelGroup]="set.value" *ngFor="let set of exercise.sets; let j = index;">
+          <td>{{j + 1}}</td>
+          <td><input [min]="0" type="number" name="kg" ngModel autocomplete="off" required></td>
+          <td><input [min]="0" type="number" name="rep" ngModel autocomplete="off" required></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button 
+    type="submit" 
+    mat-raised-button color="primary">
+    <!-- [disabled]="form.invalid" > -->
+    Add workout</button>
+</form>
+<!-- ######################### </WORKING> ######################### -->

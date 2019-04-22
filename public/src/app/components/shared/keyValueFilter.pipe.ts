@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'keyValueFilter'
 })
 
-export class keyValueFilterPipe implements PipeTransform {
+export class KeyValueFilterPipe implements PipeTransform {
 
   transform(value: any, args: any[] = null): any {
 

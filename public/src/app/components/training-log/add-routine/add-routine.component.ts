@@ -41,7 +41,8 @@ export class AddRoutineComponent implements OnInit {
 
   createExercise(): FormGroup {
     return this.fb.group({
-      exerciseName: ['', [Validators.required]]
+      exerciseName: ['', [Validators.required]],
+      sets: ['', [Validators.required, Validators.min(1)]]
     });
   }
 

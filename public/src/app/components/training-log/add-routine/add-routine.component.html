@@ -24,10 +24,10 @@
              
               <mat-label>Choose exercise</mat-label>
                 <mat-select formControlName="exerciseName">
-                  <mat-optgroup *ngFor="let group of exerciseNames | keyvalue" [label]="group.key"
+                  <mat-optgroup *ngFor="let group of exerciseNames | keyvalue" [label]="group.key | titlecase"
                                 [disabled]="group.disabled"> 
                   <mat-option *ngFor="let exerciseName of exerciseNames[group.key]" [value]="exerciseName.name">
-                    {{exerciseName.name}}
+                    {{exerciseName.name | titlecase}}
                   </mat-option> 
                 </mat-optgroup>
               </mat-select> 
@@ -35,6 +35,11 @@
             </mat-form-field>
             <span *ngIf="isInputClicked" class="btn-delete" (click)="removeExercise(i)"><mat-icon>clear</mat-icon></span>  
           </p>
+
+          <mat-form-field class="input-sets" [formGroupName]="i">
+            <mat-label>Sets</mat-label>
+            <input type="number" formControlName="sets" matInput placeholder="Sets">
+          </mat-form-field>
           
         </div>
       </div>

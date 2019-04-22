@@ -1,12 +1,28 @@
 const mongoose = require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({
-  title: {
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+  name: {
     type: mongoose.Schema.Types.String,
     required: true
   },
-  reps: {
+  rep: {
     type: mongoose.Schema.Types.Number,
+    required: true
+  },
+  kg: {
+    type: mongoose.Schema.Types.Number,
+    required: true
+  },
+  overallKg: {
+    type: mongoose.Schema.Types.Number,
+    required: true
+  },
+  date: {
+    type: mongoose.Schema.Types.Date,
     required: true
   }
 });

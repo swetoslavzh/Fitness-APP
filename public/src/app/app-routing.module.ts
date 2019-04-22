@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { CalorieComponent } from './components/calculate/calorie/calorie.component';
+import { OneRepMaxComponent } from './components/calculate/one-rep-max/one-rep-max.component';
+import { ExerciseNamesResolver } from './core/resolvers/exercise-names.resolver';
 
 const routes: Routes = [
   {
@@ -26,6 +29,14 @@ const routes: Routes = [
     path: 'training-log',
     loadChildren: './components/training-log/training-log.module#TrainingLogModule'
   },
+  {
+    path: 'calculate/calories',
+    component: CalorieComponent
+  },
+  {
+    path: 'calculate/one-rep-max',
+    component: OneRepMaxComponent
+  }
 ];
 
 @NgModule({

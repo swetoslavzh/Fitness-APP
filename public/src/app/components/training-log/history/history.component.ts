@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkoutService } from 'src/app/core/services/workout.service';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: Array<string> = ['name', 'date', 'buttons']
+  historyData;
+
+  constructor(
+    private workoutService: WorkoutService
+  ) { }
 
   ngOnInit() {
+    this.workoutService.getHistory()
+      .subscribe((data) => {
+        this.historyData = data['workouts'];
+      })
   }
 
 }

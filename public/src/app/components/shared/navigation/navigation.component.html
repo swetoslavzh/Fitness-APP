@@ -1,15 +1,35 @@
 <mat-toolbar color="primary">
     <ul fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
-      <li><a routerLink="/home" fxFlexAlign="start">Home</a></li>
-  
+      <li>
+        <a mat-button routerLink="/home" fxFlexAlign="start">Home</a>
+      </li>
+
+      <li>
+        <button mat-button [matMenuTriggerFor]="belowMenu">Calculate</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <a class="menu-item" mat-menu-item routerLink="/calculate/calories">Calories</a>
+          <a class="menu-item" mat-menu-item routerLink="/calculate/one-rep-max">One Rep Max</a>
+        </mat-menu>
+      </li>
+
       <ng-template [ngIf]="!isAuth()">
-        <li><a routerLink="/login">Login</a></li>
-        <li><a routerLink="/register">Register</a></li>
+        <li>
+          <a mat-button routerLink="/login">Login</a>
+        </li>
+        <li>
+          <a mat-button routerLink="/register">Register</a>
+        </li>
       </ng-template>
   
       <ng-template [ngIf]="!!isAuth()">
-        <li><a routerLink="/training-log/overview">Training Log</a></li>
-        <li><a routerLink="/logout" (click)="logout()">Logout</a></li>
+        <li>
+          <a mat-button routerLink="/training-log/overview">Training Log</a>
+        </li>
+        <li>
+          <a mat-button routerLink="/logout" (click)="logout()">Logout</a>
+        </li>
       </ng-template>
-    </ul>
-  </mat-toolbar>
+
+     
+  </ul>
+</mat-toolbar>

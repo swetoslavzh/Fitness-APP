@@ -5,7 +5,7 @@ const routineSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.String,
     required: true
   },
-  exercises: {
+  routine: {
     type: Array,
     required: true
   }
