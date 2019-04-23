@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './overview/overview.component';
 import { GraphComponent } from './graph/graph.component';
 import { HistoryComponent } from './history/history.component';
@@ -11,8 +11,9 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddExerciseComponent } from './routines/add-exercise/add-exercise.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { RoutineComponent } from './routines/routine/routine.component';
-import { EditWorkoutComponent } from './edit-workout/edit-workout.component';
 import { CreateArrayPipe } from '../shared/createArray.pipe';
+import { ChartsModule } from 'ng2-charts';
+import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +25,16 @@ import { CreateArrayPipe } from '../shared/createArray.pipe';
     AddRoutineComponent,
     WorkoutComponent,
     RoutineComponent,
-    EditWorkoutComponent,
-    CreateArrayPipe
+    CreateArrayPipe,
+    EditRoutineComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     TrainingLogRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ]
 })
 export class TrainingLogModule { }

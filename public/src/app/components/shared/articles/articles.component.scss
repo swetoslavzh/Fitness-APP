@@ -1,0 +1,20 @@
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+app-article {
+  flex-grow: 1;
+  max-width: 33%;
+  margin-top: 1.5rem;
+  margin-right: 3rem;
+}
+
+.btn-add-article {
+  position: fixed;
+  top: 50%;
+  right: 2%;
+}

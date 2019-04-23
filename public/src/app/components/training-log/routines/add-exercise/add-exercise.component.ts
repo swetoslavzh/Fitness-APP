@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ExerciseName } from 'src/app/components/shared/models/exerciseName.model';
 
 @Component({
   selector: 'app-add-exercise',
@@ -10,7 +10,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
   styleUrls: ['./add-exercise.component.scss']
 })
 export class AddExerciseComponent implements OnInit {
-  @Input('dialog') dialog;
   exerciseForm: FormGroup;
   
   constructor(
@@ -29,7 +28,9 @@ export class AddExerciseComponent implements OnInit {
 
   submitExercise() {
     const { exerciseName, group } = this.exerciseForm.value;
-    this.workoutService.addExercise(exerciseName, group).subscribe((_) => {});
-    this.dialogRef.close();
+    let exercise: ExerciseName = { name: exerciseName, group };
+    this.workoutService.addExercise(exercise).subscribe((_) => {
+      this.dialogRef.close();
+    });
   }
 }

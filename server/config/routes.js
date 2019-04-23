@@ -12,13 +12,23 @@ router.get('/routine', controllers.routine.sampleRoutineGET);
 router.post('/user/addRoutine', controllers.routine.userAddRoutine);
 router.post('/user/getRoutine', controllers.routine.userGetRoutine);
 
-router.post('/user/sampleRoutines', controllers.routine.sampleRoutinePOST);
-router.get('/user/sampleRoutines', controllers.routine.sampleRoutineGET);
+router.post('/sampleRoutines', controllers.routine.sampleRoutinePOST);
+router.get('/sampleRoutines', controllers.routine.sampleRoutineGET);
 
-router.post('/workout/addExercise', controllers.exercise.exercisePOST);
+router.post('/editRoutine', controllers.routine.editRoutine);
+
 router.get('/workout/exerciseNames', controllers.exercise.exerciseNamesGET);
-router.post('/workout/getWorkout', controllers.workout.getWorkout);
+router.post('/workout/addExercise', controllers.exercise.exercisePOST);
+router.post('/workout/getRoutine', controllers.workout.getRoutine);
 router.post('/workout/postWorkout', controllers.workout.postWorkout);
 router.post('/workout/history', controllers.workout.getHistory);
+router.post('/workout/exerciseHistory', controllers.workout.exerciseHistory);
+router.post('/workout/getWorkout', controllers.workout.editWorkoutFind);
+router.delete('/workout/deleteWorkout/:id', controllers.workout.deleteWorkout);
+
+router.get('/articles', controllers.article.getArticles);
+router.post('/articles', controllers.article.postArticle);
+router.post('/articles/getArticle', controllers.article.getArticle);
+router.put('/articles/editArticle', controllers.article.editArticle);
 
 module.exports = router;

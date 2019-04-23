@@ -8,11 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RoutineComponent implements OnInit {
 
   @Input('routines') routines;
+  @Input('type') type;
 
   panelOpenState: boolean = false;
   
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+  }
 
 }

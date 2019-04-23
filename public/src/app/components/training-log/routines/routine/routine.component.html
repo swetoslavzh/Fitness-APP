@@ -11,8 +11,15 @@
         <p class="exercise-titles" *ngFor="let exercise of routine.routine">
           <mat-icon>keyboard_arrow_right</mat-icon> {{exercise.exerciseName | titlecase}}
         </p>
+        <!-- <a 
+          class="edit-btn" 
+          mat-stroked-button 
+          color="primary" 
+          *ngIf="panelOpenState" 
+          [routerLink]="['/training-log/editRoutine', routine._id]">Edit routine</a> -->
+          
         <a 
-          class="btn-inner" 
+          class="start-btn" 
           mat-stroked-button 
           color="primary" 
           *ngIf="panelOpenState" 

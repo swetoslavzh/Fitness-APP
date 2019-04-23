@@ -1,0 +1,20 @@
+.article {
+  display: flex;
+  text-align: center;
+  width: 80%;
+  margin: 2rem auto;
+
+  p {
+    text-align: justify;
+  }
+
+  p:first-letter {
+    font-size: 2em;
+    margin-right: 2px;
+    font-weight: 600;
+  }
+}
+
+.h5 {
+  font-weight: 400;
+}

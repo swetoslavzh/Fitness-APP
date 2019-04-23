@@ -1,3 +1,13 @@
-<p>
-  home works!
-</p>
+<slideshow height="80vh"
+           width="100vw"
+          
+           [imageUrls]="imageUrlArray"
+           autoPlayInterval="3000"
+           backgroundSize="cover"
+           showDots="true"
+           [autoPlayWaitForLazyLoad]="true">
+</slideshow>
+
+<div class="articles">
+  <app-article *ngFor="let article of articles" [article]="article" contentLength="80"></app-article>
+</div>

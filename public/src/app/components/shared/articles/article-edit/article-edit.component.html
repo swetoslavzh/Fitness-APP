@@ -1,0 +1,57 @@
+<div class="form" *ngIf="article">
+  <mat-card>
+      <mat-card-title>Edit article</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="editArticle()" [formGroup]="editArticleForm">
+        <p>
+          <mat-form-field>
+            <input 
+              type="email" 
+              formControlName="title"
+              matInput 
+              placeholder="Title">
+              <mat-error *ngIf="editArticleForm.get('title').hasError('required')">Title is required.</mat-error>
+              <mat-error *ngIf="editArticleForm.get('title').hasError('minglength') || editArticleForm.get('title').hasError('maxlength')">Title must be atleast 5 symbols and max 50 symbols.</mat-error>
+          </mat-form-field>
+        </p>
+  
+        <p>
+          <mat-form-field>
+
+            <textarea 
+              type="string" 
+              formControlName="content"
+              matInput 
+              placeholder="Content..."
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="5"
+              cdkAutosizeMaxRows="15"></textarea>
+              <mat-error *ngIf="editArticleForm.get('content').hasError('required')">Content is required.</mat-error>
+              <mat-error *ngIf="editArticleForm.get('content').hasError('minlength')">Content must be at least 10 symbols.</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input 
+              type="string" 
+              formControlName="img"
+              matInput 
+              placeholder="Image">
+              <mat-error *ngIf="editArticleForm.get('img').hasError('required')">Image is required.</mat-error>
+          </mat-form-field>
+        </p>
+        <div class="button">
+          <button 
+            type="submit" 
+            [disabled]="editArticleForm.invalid" 
+            mat-raised-button 
+            color="primary">
+            Update Article</button>
+        </div>
+  
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

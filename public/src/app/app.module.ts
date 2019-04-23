@@ -10,14 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/services/auth.service';
 import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
 import { MaterialModule } from './core/material.module';
-import { NavigationComponent } from './components/shared/navigation/navigation.component';
+
 import { HomeComponent } from './components/home/home.component';
 import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
 import { AuthModule } from './components/auth/auth.module';
 import { CalculateModule } from './components/calculate/calculate.module';
 import { KeyValueFilterPipe } from './components/shared/keyValueFilter.pipe';
 import { CreateArrayPipe } from './components/shared/createArray.pipe';
-import { FooterComponent } from './components/shared/footer/footer.component';
+
+import { SharedModule } from './components/shared/shared.module';
+import { NavigationComponent } from './components/shared/navigation/navigation.component';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 
 @NgModule({
@@ -26,7 +29,6 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     NavigationComponent,
     HomeComponent,
     KeyValueFilterPipe,
-    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,9 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     MaterialModule,
     BrowserAnimationsModule,
     AuthModule,
-    CalculateModule
+    CalculateModule,
+    SharedModule,
+    SlideshowModule
   ],
   providers: [
     AuthService,

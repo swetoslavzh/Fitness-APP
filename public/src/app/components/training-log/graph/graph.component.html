@@ -1,3 +1,37 @@
-<p>
-  graph works!
-</p>
+<div class="select-container">
+  <mat-form-field>
+    <mat-select [formControl]="selected" (valueChange)="selectChange($event)">
+      <mat-optgroup label="Overall">
+        <mat-option value="overall">KG</mat-option>
+      </mat-optgroup>
+        <mat-optgroup *ngFor="let group of (exerciseNames | keyvalue)" [label]="group.key | titlecase"
+                        [disabled]="group.disabled"> 
+          <mat-option *ngFor="let exerciseName of exerciseNames[group.key]" [value]="exerciseName.name">
+            {{exerciseName.name | titlecase}}
+          </mat-option> 
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<ng-template #noData>
+  <mat-card class="no-data-container">
+    <h2 class="no-data">You must add atleast 2 records to see chart analysis</h2>
+  </mat-card>
+</ng-template>
+
+<ng-template #chart>
+  <div style="display: block;" class="chart" *ngIf="chartData.length > 1">
+    <canvas baseChart width="750" height="450"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"
+      [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="chartData.length < 2 then noData;else chart"></ng-container>

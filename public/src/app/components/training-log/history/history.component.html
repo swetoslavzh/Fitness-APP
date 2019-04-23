@@ -1,25 +1,33 @@
-<table mat-table [dataSource]="historyData" class="mat-elevation-z8">
+<ng-template #historyTable>
+  <table mat-table [dataSource]="historyData" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd/MM/yyyy'}}
-  </td>
-  </ng-container>
-
-  <ng-container matColumnDef="buttons">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" class="history-buttons"> 
-      <button routerLink="" mat-raised-button color="primary">Edit</button>
-      <button routerLink="" mat-raised-button color="warn">Delete</button>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd/MM/yyyy'}}
     </td>
-  </ng-container>
+    </ng-container>
+  
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="history-buttons"> 
+        <button mat-raised-button color="warn" (click)="deleteRecord(element._id)">Delete</button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<ng-template #noData>
+  <mat-card>
+    <h2>You don't have any workouts yet</h2>
+  </mat-card>
+</ng-template>
+
+<ng-container *ngIf="historyData.length == 0 then noData;else historyTable"></ng-container>

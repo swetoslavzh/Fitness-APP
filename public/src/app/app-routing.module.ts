@@ -6,6 +6,11 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { CalorieComponent } from './components/calculate/calorie/calorie.component';
 import { OneRepMaxComponent } from './components/calculate/one-rep-max/one-rep-max.component';
 import { ExerciseNamesResolver } from './core/resolvers/exercise-names.resolver';
+import { ArticlesComponent } from './components/shared/articles/articles.component';
+import { AddArticleComponent } from './components/shared/articles/add-article/add-article.component';
+import { ArticleResolver } from './core/resolvers/article.resolver';
+import { ArticleFullComponent } from './components/shared/articles/article-full/article-full.component';
+import { ArticleEditComponent } from './components/shared/articles/article-edit/article-edit.component';
 
 const routes: Routes = [
   {
@@ -15,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: { articles: ArticleResolver }
   },
   {
     path: 'login',
@@ -36,7 +42,28 @@ const routes: Routes = [
   {
     path: 'calculate/one-rep-max',
     component: OneRepMaxComponent
+  },
+  {
+    path: 'articles',
+    component: ArticlesComponent,
+    resolve: { data: ArticleResolver }
+  },
+  {
+    path: 'articles/addArticle',
+    component: AddArticleComponent
+  },
+  {
+    path: 'articles/:id',
+    component: ArticleFullComponent
+  },
+  {
+    path: 'articles/edit/:id',
+    component: ArticleEditComponent
   }
+  // {
+  //   path: '**',
+  //   redirectTo: /*NOT FOUnd comp */
+  // }
 ];
 
 @NgModule({

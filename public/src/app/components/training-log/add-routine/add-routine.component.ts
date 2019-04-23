@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
-import { WorkoutService } from 'src/app/core/services/workout.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutineService } from 'src/app/core/services/routine.service';
+import { ExerciseName } from '../../shared/models/exerciseName.model';
 
 @Component({
   selector: 'app-add-routine',
@@ -17,7 +15,8 @@ export class AddRoutineComponent implements OnInit {
   exercisesForm: FormGroup;
   exercises: FormArray;
   isInputClicked: boolean = false;
-  exerciseNames;
+  exerciseNames: Array<ExerciseName>;
+  currentUrl:string;
   
   constructor(
     private fb: FormBuilder,
@@ -27,6 +26,7 @@ export class AddRoutineComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.currentUrl = this.router.url;
     this.routineNameForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]]
     });
@@ -62,10 +62,9 @@ export class AddRoutineComponent implements OnInit {
     const name = this.routineNameForm.value.name;
     const exercises = this.exercisesForm.value.exercises;
 
-    this.routineService.addRoutine(name, exercises)
+    this.routineService.addRoutine(name, exercises, this.currentUrl)
       .subscribe(() => {
         this.router.navigate(['/training-log']);
-      })
+      });
   }
-
 }

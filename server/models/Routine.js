@@ -1,15 +1,21 @@
 const mongoose = require('mongoose');
 
-const routineSchema = new mongoose.Schema({
+const RoutineSchema = new mongoose.Schema({
   name: {
-    type: mongoose.Schema.Types.String,
-    required: true
+    required: true,
+    type: mongoose.Schema.Types.String
   },
   routine: {
-    type: Array,
-    required: true
+    required: true,
+    type: Array
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId
+  },
+  isSample: {
+    type: mongoose.Schema.Types.Boolean
   }
 });
 
-const Routine = mongoose.model('Routine', routineSchema);
+const Routine = mongoose.model('Routine', RoutineSchema);
 module.exports = Routine;

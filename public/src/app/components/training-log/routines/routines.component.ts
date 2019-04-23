@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ActivatedRoute } from '@angular/router';
-import { RoutineService } from 'src/app/core/services/routine.service';
 
 @Component({
   selector: 'app-routines',

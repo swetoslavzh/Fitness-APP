@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [ Validators.required, Validators.minLength(4)] ]
-    })
+    });
   }
 
   login() {
@@ -33,6 +33,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data['token']);
         localStorage.setItem('name', data['user'].name);
         this.router.navigate(['/home']);
-      })
+      });
   }
 }

@@ -5,9 +5,13 @@ const WorkoutSchema = new mongoose.Schema({
     required: true,
     type: mongoose.Schema.Types.String
   },
-  workout: {
+  routine: {
     required: true,
     type: Array
+  },
+  workoutOverallKg: {
+    required: true,
+    type: mongoose.Schema.Types.Number
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,

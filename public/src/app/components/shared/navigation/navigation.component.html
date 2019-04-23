@@ -5,6 +5,10 @@
       </li>
 
       <li>
+        <a mat-button routerLink="/articles" fxFlexAlign="start">Articles</a>
+      </li>
+
+      <li>
         <button mat-button [matMenuTriggerFor]="belowMenu">Calculate</button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
           <a class="menu-item" mat-menu-item routerLink="/calculate/calories">Calories</a>

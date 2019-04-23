@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutService } from 'src/app/core/services/workout.service';
+import { Workout } from '../../shared/models/workout.model';
 
 @Component({
   selector: 'app-workout',
@@ -14,7 +15,7 @@ export class WorkoutComponent implements OnInit {
   kgControls: FormArray;
   repsControls: FormArray;
   displayedColumns: Array<string> = ['position', 'name', 'weight', 'reps'];
-  workout;
+  workout: Workout;
 
   constructor(
     private fb: FormBuilder,
@@ -23,45 +24,16 @@ export class WorkoutComponent implements OnInit {
     private workoutService: WorkoutService
   ) { }
 
-  // ngOnInit() {
-  //   this.workout = this.route.snapshot.data.routine;
-  //   console.log(this.workout);
-  //   let exerciseGroups = [];
-
-  //   // for (let exercise of this.workout.routine) {
-  //   for (let i = 0; i < this.workout.routine.length; i++) {
-  //     let exerciseFormGroup = new FormGroup({});
-  //     let kg: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
-  //     let reps: FormControl = new FormControl('', [Validators.required, Validators.min(1)]);
-  //     exerciseFormGroup.addControl(`${i}`, kg);
-  //     exerciseFormGroup.addControl(`${i}`, reps);
-  //     exerciseGroups.push(exerciseFormGroup);
-  //   }
-
-  //   this.workoutForm = this.fb.group({
-  //     exercises: this.fb.array(exerciseGroups)
-  //   });
-  // }
-
   ngOnInit() {
-    // this.workout = this.route.snapshot.data.routine;
     let data = this.route.snapshot.data.routine;
     data.routine.map((el) => el.isCalled = false);
     this.workout = data;
-    console.log(this.workout);
 
     this.workoutForm = this.fb.group({
       exercise: this.fb.array([this.createExercicse()])
     });
   }
   
-  // createItem() {
-  //   return this.fb.group({
-  //     kg: ['', [Validators.required, Validators.min(0)]],
-  //     reps: ['', [Validators.required, Validators.min(0)]]
-  //   })
-  // }
-
   createExercicse() {
     return this.fb.group({
       set: this.fb.array([this.createSet()])
@@ -74,23 +46,8 @@ export class WorkoutComponent implements OnInit {
       reps: ['', [Validators.required, Validators.min(0)]]
     })
   }
-
-  addNext(el) {
-    el.isCalled = true;
-    console.log('addNext called');
-    (this.workoutForm.controls['exercise'] as FormArray).push(this.createExercicse())
-  }
   
-  addSet(el) {
-    console.log('addSet called');
-    (this.workoutForm.controls['set'] as FormArray).push(this.createSet())
-  }
-
-  // submitWorkoutForm() {
-  //   console.log(this.workoutForm);
-  // }
   submitWorkoutForm(workoutData) {
-    console.log(workoutData);
     let workoutName = this.workout.name;
     this.workoutService.postWorkout(workoutName, workoutData)
       .subscribe(() => {

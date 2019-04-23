@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from 'src/app/core/services/workout.service';
+import { History } from '../../shared/models/history.model';
 
 @Component({
   selector: 'app-history',
@@ -9,7 +10,7 @@ import { WorkoutService } from 'src/app/core/services/workout.service';
 export class HistoryComponent implements OnInit {
 
   displayedColumns: Array<string> = ['name', 'date', 'buttons']
-  historyData;
+  historyData = [];
 
   constructor(
     private workoutService: WorkoutService
@@ -18,8 +19,17 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     this.workoutService.getHistory()
       .subscribe((data) => {
-        this.historyData = data['workouts'];
-      })
+        this.historyData = data['data'];
+      });
   }
 
+  deleteRecord(element) {
+    this.workoutService.deleteWorkout(element)
+      .subscribe((_data) => {
+        this.workoutService.getHistory()
+          .subscribe((data) => {
+            this.historyData = data['data'];
+          });
+      });
+  }
 }

@@ -1,9 +1,9 @@
 <h2>My Routines</h2>
-<app-routine [routines]="userRoutines"></app-routine>
+<app-routine [routines]="userRoutines" type="user"></app-routine>
 <mat-divider></mat-divider>
 
 <h2>Sample Routines</h2>
-<app-routine [routines]="sampleRoutines"></app-routine>
+<app-routine [routines]="sampleRoutines" type="sample"></app-routine>
 <mat-divider></mat-divider>
 
 <a
@@ -12,6 +12,13 @@
   color="primary"
   routerLink="/training-log/addRoutine">
   Add new routine</a>
+
+<a
+  class="btn-add" 
+  mat-raised-button 
+  color="primary"
+  routerLink="/training-log/addSampleRoutine">
+  Add new sample routine</a>
 
 <a 
   class="btn-add" 
