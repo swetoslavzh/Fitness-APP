@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const token = localStorage.getItem('token');
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +13,7 @@ export class RoutineService {
   ) { }
 
   getUserRoutines() {
+    let token = localStorage.getItem('token');
     return this.http.post(`${this.userRoutineUrl}/getRoutine`, { token });
   }
 
@@ -27,11 +26,12 @@ export class RoutineService {
   }
 
   addRoutine(name: string, routine, currentUrl: string) {
+    let token = localStorage.getItem('token');
     let urlEnd = currentUrl.split('/').pop();
     let url = (urlEnd === "addRoutine") 
       ? `${this.userRoutineUrl}/addRoutine` 
       : "http://localhost:5000/sampleRoutines";
-
+      
     return this.http.post(url, { name, routine, token })
   }
 
