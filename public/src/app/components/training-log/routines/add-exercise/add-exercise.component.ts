@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';

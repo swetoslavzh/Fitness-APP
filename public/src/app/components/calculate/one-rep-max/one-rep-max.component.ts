@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { LiftWieght } from '../../shared/models/lift-weight.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LiftWeight } from '../../shared/models/lift-weight.model';
 
 @Component({
   selector: 'app-one-rep-max',
@@ -14,7 +13,7 @@ export class OneRepMaxComponent implements OnInit {
   displayedColumns: Array<string> = ['percentage', 'weight', 'reps'];
   selected = 'kg';
   oneRepMax: number;
-  liftData: Array<LiftWieght> = [];
+  liftData: Array<LiftWeight> = [];
 
   constructor(
     private fb: FormBuilder
@@ -22,9 +21,9 @@ export class OneRepMaxComponent implements OnInit {
 
   ngOnInit() {
     this.onerepmaxForm = this.fb.group({
-      lift: ['', [ Validators.required, Validators.minLength(1)] ],
+      lift: ['', [Validators.required, Validators.min(1)] ],
       massunit: ['', Validators.required],
-      sets: ['', [ Validators.required, Validators.minLength(1)] ]
+      sets: ['', [Validators.required, Validators.min(1)] ]
     });
   }
 
@@ -42,6 +41,8 @@ export class OneRepMaxComponent implements OnInit {
 
   createTable() {
     let percentageChange = 5;
+
+    if (this.liftData.length > 0) this.liftData = [];
     
     for (let i = 0; i < 11; i++ ) {
 

@@ -29,9 +29,9 @@ export class CalorieComponent implements OnInit {
   ngOnInit() {
     this.calorieForm = this.fb.group({
       age: ['', [ Validators.required, Validators.min(1) ]],
-      weight: ['', [ Validators.required, Validators.min(40) ]],
+      weight: ['', [ Validators.required, Validators.min(20) ]],
       weightUnit: ['', Validators.required],
-      height: ['', [ Validators.required, Validators.min(40) ]],
+      height: ['', [ Validators.required, Validators.min(20) ]],
       heightUnit: ['', Validators.required],
       gender: ['', Validators.required],
       exercise: ['', Validators.required]

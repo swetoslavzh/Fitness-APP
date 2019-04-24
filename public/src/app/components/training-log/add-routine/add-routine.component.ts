@@ -14,9 +14,8 @@ export class AddRoutineComponent implements OnInit {
   routineNameForm: FormGroup;
   exercisesForm: FormGroup;
   exercises: FormArray;
-  isInputClicked: boolean = false;
   exerciseNames: Array<ExerciseName>;
-  currentUrl:string;
+  currentUrl: string;
   
   constructor(
     private fb: FormBuilder,
@@ -52,10 +51,6 @@ export class AddRoutineComponent implements OnInit {
 
   addExercise() {
     this.exercises.push(this.createExercise());
-  }
-
-  removeExercise(index) {
-    this.exercises.removeAt(index);
   }
 
   addRoutine() {

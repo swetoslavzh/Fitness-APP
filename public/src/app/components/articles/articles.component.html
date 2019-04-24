@@ -1,0 +1,9 @@
+<div class="articles">
+  <app-article *ngFor="let article of articles" [article]="article" contentLength="100"></app-article>
+</div>
+<button 
+  *ngIf="authService.isAdmin()"
+  mat-raised-button 
+  color="primary" 
+  class="btn-add-article" 
+  (click)="openDialog()">Add article</button>

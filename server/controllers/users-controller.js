@@ -1,5 +1,6 @@
 const passport = require('passport');
 const validator = require('validator');
+const User = require('../models/User');
 
 function validateSignupForm (payload) {
   const errors = {}
@@ -115,5 +116,30 @@ module.exports = {
         user: userData
       });
     })(req, res, next)
+  },
+  getAllUsers: (req, res) => {
+    User.find({ })
+      .then((users) => {
+        return res.status(200).json(users);
+      })
+      .catch((err) => {
+        return res.status(404).json({
+          success: false,
+          message: err.message
+        });
+      });
+  },
+  changeUserRole: (req, res) => {
+    const { userId, roles } = req.body;
+
+    User.findOneAndUpdate({_id: userId}, {
+      roles
+    })
+    .then(() => {
+      return res.status(200).json({
+        success: true,
+        message: 'Roles was successfully changed'
+      })
+    });
   }
 }

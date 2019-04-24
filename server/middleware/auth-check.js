@@ -3,7 +3,9 @@ const User = require('../models/User');
 
 module.exports = (req, res, next) => {
   if (!req.headers.authorization) {
-    return res.status(401).end()
+    return res.status(401).json({
+      messaage: 'you are not authenticated'
+    });
   }
 
   // get the last part from a authorization header string like "bearer token-value"

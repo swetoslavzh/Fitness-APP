@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     let articles = this.route.snapshot.data.articles;
-    if (articles.length > 3) articles = articles.slice(articles.length - 4, 3);
+    if (articles.length > 3) articles = articles.slice(articles.length - 3, articles.length);
     this.articles = articles;
   }
 }

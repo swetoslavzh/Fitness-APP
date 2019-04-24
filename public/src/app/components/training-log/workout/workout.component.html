@@ -1,10 +1,10 @@
 <form #form="ngForm" (ngSubmit)="submitWorkoutForm(form.value)">
 
-  <h2>{{workout.name}}</h2>
+  <h2>{{workout.name | titlecase}}</h2>
 
   <div class="exerciseForm" *ngFor="let exercise of workout.routine; let i = index;" [ngModelGroup]="exercise.exerciseName">
     <table>
-      <caption>{{exercise.exerciseName}}</caption>
+      <caption>{{exercise.exerciseName | titlecase }}</caption>
       <thead>
         <th>#</th>
         <th>KG</th>

@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-    <ul fxFlex fxLayout fxLayoutGap="10px" fxLayoutAlign="flex-end">
+  <nav>
+    <ul>
       <li>
         <a mat-button routerLink="/home" fxFlexAlign="start">Home</a>
       </li>
@@ -34,6 +35,11 @@
         </li>
       </ng-template>
 
-     
-  </ul>
+      <ng-template [ngIf]="!!isAdmin()">
+        <li>
+          <a mat-button routerLink="/administration">Administration</a>
+        </li>
+      </ng-template>
+    </ul>
+  </nav>
 </mat-toolbar>

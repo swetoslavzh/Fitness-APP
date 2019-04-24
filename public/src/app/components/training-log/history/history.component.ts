@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from 'src/app/core/services/workout.service';
-import { History } from '../../shared/models/history.model';
 
 @Component({
   selector: 'app-history',

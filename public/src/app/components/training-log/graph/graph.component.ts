@@ -64,7 +64,6 @@ export class GraphComponent implements OnInit {
 
       this.workoutService.getExerciseHistory(value)
         .subscribe((exerciseHistory) => {
-          console.log(exerciseHistory);
           this.chartData = exerciseHistory['data'].map(exercise => exercise.overallKg);
           newLabels = exerciseHistory['data'].map(exercise => {
             let date = new Date(exercise.date);

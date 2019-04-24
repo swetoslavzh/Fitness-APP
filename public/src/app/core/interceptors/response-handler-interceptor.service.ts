@@ -3,8 +3,6 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
-import { AppComponent } from 'src/app/app.component';
-import { LoginComponent } from 'src/app/components/auth/login/login.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +16,18 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
       if (success instanceof HttpResponse) {
         const url = success.url;
 
+        if (url.endsWith('login')) {
+          this.snackBar.open(`Hello ${success.body.user.name}!`, '', {
+            duration: 4000
+          });
+        }
+
+        if (url.endsWith('changeRole')) {
+          this.snackBar.open(`Successfully changed user role`, '', {
+            duration: 4000
+          });
+        }
+
         if (url.endsWith('addExercise')) {
           this.snackBar.open(success['body'].message, '', {
             duration: 4000
@@ -26,7 +36,7 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
         if (url.endsWith('postWorkout')) {
           this.snackBar.open(success['body'].message, '', {
             duration: 4000
-          })
+          });
         }
       }
     }), catchError((err) => {

@@ -5,12 +5,15 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { CalorieComponent } from './components/calculate/calorie/calorie.component';
 import { OneRepMaxComponent } from './components/calculate/one-rep-max/one-rep-max.component';
-import { ExerciseNamesResolver } from './core/resolvers/exercise-names.resolver';
-import { ArticlesComponent } from './components/shared/articles/articles.component';
-import { AddArticleComponent } from './components/shared/articles/add-article/add-article.component';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { AddArticleComponent } from './components/articles/add-article/add-article.component';
+import { ArticleFullComponent } from './components/articles/article-full/article-full.component';
+import { ArticleEditComponent } from './components/articles/article-edit/article-edit.component';
+
 import { ArticleResolver } from './core/resolvers/article.resolver';
-import { ArticleFullComponent } from './components/shared/articles/article-full/article-full.component';
-import { ArticleEditComponent } from './components/shared/articles/article-edit/article-edit.component';
+import { AdminGuard } from './core/guards/admin.guard';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AdministrationComponent } from './components/auth/administration/administration.component';
 
 const routes: Routes = [
   {
@@ -33,7 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'training-log',
-    loadChildren: './components/training-log/training-log.module#TrainingLogModule'
+    loadChildren: './components/training-log/training-log.module#TrainingLogModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'calculate/calories',
@@ -50,7 +54,8 @@ const routes: Routes = [
   },
   {
     path: 'articles/addArticle',
-    component: AddArticleComponent
+    component: AddArticleComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'articles/:id',
@@ -58,12 +63,18 @@ const routes: Routes = [
   },
   {
     path: 'articles/edit/:id',
-    component: ArticleEditComponent
+    component: ArticleEditComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'administration',
+    component: AdministrationComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
-  // {
-  //   path: '**',
-  //   redirectTo: /*NOT FOUnd comp */
-  // }
 ];
 
 @NgModule({

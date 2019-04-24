@@ -34,4 +34,8 @@ export class RoutineService {
 
     return this.http.post(url, { name, routine, token })
   }
+
+  deleteRoutine(id: string) {
+    return this.http.delete(`http://localhost:5000/deleteRoutine/${id}`);
+  }
 }

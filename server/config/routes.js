@@ -6,6 +6,9 @@ const router = new express.Router()
 router.post('/auth/register', controllers.users.registerPost);
 router.post('/auth/login', controllers.users.loginPost);
 
+router.get('/getAllUsers', controllers.users.getAllUsers);
+router.put('/changeRole', controllers.users.changeUserRole);
+
 router.post('/routine', controllers.routine.sampleRoutinePOST);
 router.get('/routine', controllers.routine.sampleRoutineGET);
 
@@ -16,6 +19,7 @@ router.post('/sampleRoutines', controllers.routine.sampleRoutinePOST);
 router.get('/sampleRoutines', controllers.routine.sampleRoutineGET);
 
 router.post('/editRoutine', controllers.routine.editRoutine);
+router.delete('/deleteRoutine/:id', controllers.routine.deleteRoutine);
 
 router.get('/workout/exerciseNames', controllers.exercise.exerciseNamesGET);
 router.post('/workout/addExercise', controllers.exercise.exercisePOST);

@@ -1,29 +1,39 @@
-<div class="routines-container">
-  <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true;"
-                            (closed)="panelOpenState = false;"
-                            *ngFor="let routine of routines">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{routine.name | titlecase}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p class="exercise-titles" *ngFor="let exercise of routine.routine">
-          <mat-icon>keyboard_arrow_right</mat-icon> {{exercise.exerciseName | titlecase}}
-        </p>
-        <!-- <a 
-          class="edit-btn" 
-          mat-stroked-button 
-          color="primary" 
-          *ngIf="panelOpenState" 
-          [routerLink]="['/training-log/editRoutine', routine._id]">Edit routine</a> -->
-          
-        <a 
-          class="start-btn" 
-          mat-stroked-button 
-          color="primary" 
-          *ngIf="panelOpenState" 
-          [routerLink]="['/training-log/addWorkout', routine._id]">Start workout</a>
-      </mat-expansion-panel>
-  </mat-accordion>
-</div>
+<ng-template #routinesContainer>
+  <div class="routines-container">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true;"
+                              (closed)="panelOpenState = false;"
+                              *ngFor="let routine of routines">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{routine.name | titlecase}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p class="exercise-titles" *ngFor="let exercise of routine.routine">
+            <mat-icon>keyboard_arrow_right</mat-icon> {{exercise.exerciseName | titlecase}}
+          </p>
+  
+          <a
+            class="delete-btn" 
+            mat-raised-button 
+            color="warn" 
+            *ngIf="panelOpenState && ((type==='sample' && authService.isAdmin()) || (type==='user'))" 
+            (click)="deleteWorkout(routine._id)">
+            Delete workout</a>
+  
+          <a 
+            class="start-btn" 
+            mat-stroked-button 
+            color="primary" 
+            *ngIf="panelOpenState" 
+            [routerLink]="['/training-log/addWorkout', routine._id]">Start workout</a>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</ng-template>
+
+<ng-template #noData>
+  <h2 class="no-data">You don't have any routines</h2>
+</ng-template>
+
+<ng-container *ngIf="routines.length > 0 then routinesContainer;else noData"></ng-container>

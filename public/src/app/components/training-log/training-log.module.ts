@@ -11,7 +11,6 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddExerciseComponent } from './routines/add-exercise/add-exercise.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { RoutineComponent } from './routines/routine/routine.component';
-import { CreateArrayPipe } from '../shared/createArray.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 
@@ -25,7 +24,6 @@ import { EditRoutineComponent } from './edit-routine/edit-routine.component';
     AddRoutineComponent,
     WorkoutComponent,
     RoutineComponent,
-    CreateArrayPipe,
     EditRoutineComponent
   ],
   imports: [

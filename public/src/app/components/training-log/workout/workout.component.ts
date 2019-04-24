@@ -55,23 +55,3 @@ export class WorkoutComponent implements OnInit {
       });
   }
 }
-
-
-
-function generateMaterialTable(data) {
-  let matTable = [];
-
-  for (let i = 0; i < data.routine.length; i++) {
-
-    let exercise = data.routine[i];
-    matTable.push({
-      "name": exercise.exerciseName,
-      "reps": []
-    });
-
-    for(let j = 0; j < exercise.sets; j++) {
-      matTable[i].reps.push({"index": j});
-    }
-  }
-  return matTable;
-}

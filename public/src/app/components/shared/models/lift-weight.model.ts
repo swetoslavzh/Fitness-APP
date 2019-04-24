@@ -1,4 +1,4 @@
-export interface LiftWieght {
+export interface LiftWeight {
   percentage: number;
   weight: number;
   reps: number;

@@ -1,34 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/services/auth.service';
-import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
 import { MaterialModule } from './core/material.module';
-
-import { HomeComponent } from './components/home/home.component';
-import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
 import { AuthModule } from './components/auth/auth.module';
 import { CalculateModule } from './components/calculate/calculate.module';
-import { KeyValueFilterPipe } from './components/shared/keyValueFilter.pipe';
-import { CreateArrayPipe } from './components/shared/createArray.pipe';
-
 import { SharedModule } from './components/shared/shared.module';
-import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { ArticlesModule } from './components/articles/articles.module';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
+import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
+
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
-    HomeComponent,
-    KeyValueFilterPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,12 +29,12 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MaterialModule,
     BrowserAnimationsModule,
     AuthModule,
     CalculateModule,
     SharedModule,
+    ArticlesModule,
     SlideshowModule
   ],
   providers: [

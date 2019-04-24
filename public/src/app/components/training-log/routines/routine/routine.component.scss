@@ -12,10 +12,12 @@ mat-accordion {
   justify-content: space-around;
 }
 
-.edit-btn {
-  float: left;
-}
-
 .start-btn {
   float: right;
+}
+
+.no-data {
+  margin-left: 1rem;
+  font-weight: 500;
+  color: darkgrey
 }
