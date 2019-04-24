@@ -41,7 +41,7 @@
 
 <pre>
 Admin user:
- username: admin@admin.com
+ email: admin@admin.com
  password: Admin
 </pre>
 
