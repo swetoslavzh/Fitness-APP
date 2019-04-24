@@ -4,8 +4,6 @@
   Fitness APP can analyze your workouts 
 </p>
 
-<br>
-
 <h1>Installation</h1>
 <ol>
   <li>Use NPM to install all the dependencies in public folder: npm install</li>
@@ -14,8 +12,6 @@
   <li>Start node server: node index.js</li>
   <li>Visit: http://localhost:5000/</li>
 </ol>
-
-<br>
 
 <h1>Functionality</h1>
 <hr>
@@ -27,7 +23,7 @@
   <li>Use calculate calories</li>
   <li>Use calculate one rep max</li>
 </ul>
-<br>
+
 <p>Authorized users can:</p>
 <ul>
   <li>Add new routines</li>
@@ -35,7 +31,7 @@
   <li>Watch history</li>
   <li>Watch analyze graph of workout records</li>
 </ul>
-<br>
+
 <p>Admin can:</p>
 <ul>
   <li>Add new exercises</li>
@@ -51,7 +47,6 @@ Admin user:
  password: Admin
 </pre>
 
-<br>
 
 <h1>License</h1>
 <hr>
