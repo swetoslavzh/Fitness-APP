@@ -46,8 +46,8 @@ export class CalorieComponent implements OnInit {
 
     let bmr = this.calcBmr(gender, weight, height, age);
     this.dailyCalories = bmr * exerciseLevel[exercise];
-    this.losingFatCalories = this.dailyCalories - 500;
-    this.muscleGainCalories = this.dailyCalories + 500;
+    this.losingFatCalories = Math.round(this.dailyCalories - 500);
+    this.muscleGainCalories = Math.round(this.dailyCalories + 500);
   }
 
   calcBmr(gender, weight, height, age): number {
