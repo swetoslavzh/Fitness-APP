@@ -1,5 +1,4 @@
 <h1>Fitness APP</h1>
-<hr>
 <p>
   Fitness APP can analyze your workouts 
 </p>
@@ -14,7 +13,6 @@
 </ol>
 
 <h1>Functionality</h1>
-<hr>
 <p>App provides basic functionality to users, based on their authentication and roles.</p>
 <br>
 <p>Anonymous users can:</p>
@@ -49,5 +47,4 @@ Admin user:
 
 
 <h1>License</h1>
-<hr>
 This project is licensed under the MIT License
