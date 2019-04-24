@@ -5,8 +5,6 @@
 </p>
 
 <br>
-<hr>
-<br>
 
 <h1>Installation</h1>
 <ol>
@@ -17,8 +15,6 @@
   <li>Visit: http://localhost:5000/</li>
 </ol>
 
-<br>
-<hr>
 <br>
 
 <h1>Functionality</h1>
@@ -55,8 +51,6 @@ Admin user:
  password: Admin
 </pre>
 
-<br>
-<hr>
 <br>
 
 <h1>License</h1>
