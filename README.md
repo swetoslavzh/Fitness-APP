@@ -7,8 +7,8 @@
 <ol>
   <li>Use NPM to install all the dependencies in public folder: <code>npm install</code></li>
   <li>Use NPM to install all the dependencies in server folder: <code>npm install</code></li>
-  <li>Boot up a MongoDB server instance: mongod --dbpath <path> --port 27017</li>
-  <li>Start node server: node index.js</li>
+  <li>Boot up a MongoDB server instance: <code>mongod --dbpath <path> --port 27017</code></li>
+  <li>Start node server: <code>node index.js</code></li>
   <li>Visit: http://localhost:5000/</li>
 </ol>
 
