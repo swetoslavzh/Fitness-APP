@@ -5,8 +5,8 @@
 
 <h1>Installation</h1>
 <ol>
-  <li>Use NPM to install all the dependencies in public folder: npm install</li>
-  <li>Use NPM to install all the dependencies in server folder: npm install</li>
+  <li>Use NPM to install all the dependencies in public folder: <code>npm install</code></li>
+  <li>Use NPM to install all the dependencies in server folder: <code>npm install</code></li>
   <li>Boot up a MongoDB server instance: mongod --dbpath <path> --port 27017</li>
   <li>Start node server: node index.js</li>
   <li>Visit: http://localhost:5000/</li>
