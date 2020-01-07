@@ -8,43 +8,41 @@ import { ExerciseName } from 'src/app/components/shared/models/exerciseName.mode
 export class WorkoutService {
   private workoutUrl = "http://localhost:5000/workout";
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  addExercise(exericse: ExerciseName) {
+  public addExercise(exericse: ExerciseName) {
     const token = localStorage.getItem('token');
     return this.http.post(`${this.workoutUrl}/addExercise`, { token, name: exericse.name, group: exericse.group });
   }
 
-  getExercises() {
+  public getExercises() {
     return this.http.get(`${this.workoutUrl}/exerciseNames`);
   }
 
-  getRoutine(id: string) {
+  public getRoutine(id: string) {
     return this.http.post(`${this.workoutUrl}/getRoutine`, { id });
   }
 
-  postWorkout(name: string, workout) {
+  public postWorkout(name: string, workout) {
     const token = localStorage.getItem('token');
     return this.http.post(`${this.workoutUrl}/postWorkout`, { name, workout, token })
   }
 
-  getHistory() {
+  public getHistory() {
     const token = localStorage.getItem('token');
     return this.http.post(`${this.workoutUrl}/history`, { token });
   }
 
-  getExerciseHistory(name: string) {
+  public getExerciseHistory(name: string) {
     const token = localStorage.getItem('token');
     return this.http.post(`${this.workoutUrl}/exerciseHistory`, { token, name });
   }
 
-  getWorkout(id: string) {
+  public  getWorkout(id: string) {
     return this.http.post(`${this.workoutUrl}/getWorkout`, { id });
   }
 
-  deleteWorkout(id: string) {
+  public deleteWorkout(id: string) {
     return this.http.delete(`${this.workoutUrl}/deleteWorkout/${id}`);
   }
 }

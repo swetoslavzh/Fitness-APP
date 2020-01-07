@@ -11,20 +11,22 @@ import { Workout } from '../../shared/models/workout.model';
 })
 export class WorkoutComponent implements OnInit {
 
-  workoutForm: FormGroup;
-  kgControls: FormArray;
-  repsControls: FormArray;
-  displayedColumns: Array<string> = ['position', 'name', 'weight', 'reps'];
-  workout: Workout;
+  public workoutForm: FormGroup;
+  public kgControls: FormArray;
+  public repsControls: FormArray;
+  public workout: Workout;
+  public displayedColumns: string[];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private workoutService: WorkoutService
-  ) { }
+  ) {
+    this.displayedColumns = ['position', 'name', 'weight', 'reps'];
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     let data = this.route.snapshot.data.routine;
     data.routine.map((el) => el.isCalled = false);
     this.workout = data;
@@ -34,20 +36,20 @@ export class WorkoutComponent implements OnInit {
     });
   }
   
-  createExercicse() {
+  public createExercicse() {
     return this.fb.group({
       set: this.fb.array([this.createSet()])
     });
   }
 
-  createSet() {
+  public createSet() {
     return this.fb.group({
       kg: ['', [Validators.required, Validators.min(0)]],
       reps: ['', [Validators.required, Validators.min(0)]]
     })
   }
   
-  submitWorkoutForm(workoutData) {
+  public submitWorkoutForm(workoutData): void {
     let workoutName = this.workout.name;
     this.workoutService.postWorkout(workoutName, workoutData)
       .subscribe(() => {

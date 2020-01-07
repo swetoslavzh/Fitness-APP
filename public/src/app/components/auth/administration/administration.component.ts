@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministrationService } from 'src/app/core/services/administration.service';
+import { Observable } from 'rxjs';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-administration',
   templateUrl: './administration.component.html',
   styleUrls: ['./administration.component.scss']
 })
-export class AdministrationComponent implements OnInit {
+export class AdministrationComponent {
 
-  userData$;
-  displayedColumns: Array<string> = ["name", "role"];
+  public userData$: Observable<User[]>;
+  public displayedColumns: string[];
 
   constructor(
     private administrationService: AdministrationService
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.displayedColumns = ["name", "role"];
     this.userData$ = this.administrationService.getAllUsers();
   }
 
-  changeRole(id, value) {
-    let roles = [value];
-    this.administrationService.changeUserRole(id, roles)
-      .subscribe((_data) => { });
+  public changeRole(id, value): void {
+    this.administrationService.changeUserRole(id, [value])
+      .subscribe( (_data) => {} );
   }
 }

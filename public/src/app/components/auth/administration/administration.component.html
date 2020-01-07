@@ -9,7 +9,8 @@
     <th mat-header-cell *matHeaderCellDef> Role </th>
     <td mat-cell *matCellDef="let element">
        <mat-form-field>
-        <mat-select [value]="element.roles[0] || 'User'" (valueChange)="changeRole(element._id, $event)">
+        <mat-select [value]="element.roles[0] || 'User'" 
+                    (valueChange)="changeRole(element._id, $event)">
           <mat-option value="Admin">Admin</mat-option>
           <mat-option value="User">User</mat-option>
         </mat-select>

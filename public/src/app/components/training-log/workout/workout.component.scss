@@ -19,7 +19,6 @@ table {
   -webkit-box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 17px -1px rgba(0,0,0,0.75);
-
   caption {
     color: white;
     font-size: 1.2em;
@@ -39,7 +38,6 @@ input {
   margin-left: 50%;
   color: rgb(97, 96, 96);
   background-color: whitesmoke;
-
   &:focus {
     border-bottom: 2px solid #3F51B5;
     outline: none;
@@ -60,7 +58,6 @@ button {
   table {
     width: 80%;
   }
-
   button {
     width: 80%;
     margin-left: 10%;

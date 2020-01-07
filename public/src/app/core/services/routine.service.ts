@@ -8,34 +8,32 @@ export class RoutineService {
 
   private userRoutineUrl = "http://localhost:5000/user";
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  getUserRoutines() {
+  public getUserRoutines() {
     let token = localStorage.getItem('token');
     return this.http.post(`${this.userRoutineUrl}/getRoutine`, { token });
   }
 
-  getSampleRoutines() {
+  public getSampleRoutines() {
     return this.http.get(`http://localhost:5000/sampleRoutines`);
   }
 
-  editRoutine(routineId: string) {
+  public editRoutine(routineId: string) {
     return this.http.post('http://localhost:5000/editRoutine', { routineId });
   }
 
-  addRoutine(name: string, routine, currentUrl: string) {
-    let token = localStorage.getItem('token');
-    let urlEnd = currentUrl.split('/').pop();
-    let url = (urlEnd === "addRoutine") 
+  public addRoutine(name: string, routine, currentUrl: string) {
+    const token = localStorage.getItem('token');
+    const urlLastSegment = currentUrl.split('/').pop();
+    let url = (urlLastSegment === "addRoutine") 
       ? `${this.userRoutineUrl}/addRoutine` 
       : "http://localhost:5000/sampleRoutines";
       
     return this.http.post(url, { name, routine, token })
   }
 
-  deleteRoutine(id: string) {
+  public deleteRoutine(id: string) {
     return this.http.delete(`http://localhost:5000/deleteRoutine/${id}`);
   }
 }

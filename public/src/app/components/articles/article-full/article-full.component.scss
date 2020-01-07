@@ -1,17 +1,15 @@
 .article {
   display: flex;
-  text-align: center;
-  width: 80%;
   margin: 2rem auto;
-
+  width: 80%;
+  text-align: center;
   p {
     text-align: justify;
-  }
-
-  p:first-letter {
-    font-size: 2em;
-    margin-right: 2px;
-    font-weight: 600;
+    &:first-letter {
+      margin-right: 2px;
+      font-size: 2em;
+      font-weight: 600;
+    }
   }
 }
 

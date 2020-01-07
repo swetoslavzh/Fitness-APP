@@ -11,9 +11,9 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class RoutinesComponent implements OnInit {
 
-  userRoutines;
-  sampleRoutines;
-  dialogRef;
+  public userRoutines;
+  public sampleRoutines;
+  public dialogRef;
 
   constructor(
     public dialog: MatDialog,
@@ -21,12 +21,12 @@ export class RoutinesComponent implements OnInit {
     public authService: AuthService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.userRoutines = this.route.snapshot.data.routines.userRoutines;
     this.sampleRoutines = this.route.snapshot.data.routines.sampleRoutines;
   }
 
-  openDialog() {
+  public openDialog(): void {
     this.dialogRef = this.dialog.open(AddExerciseComponent, {
       width: '250px'
     });

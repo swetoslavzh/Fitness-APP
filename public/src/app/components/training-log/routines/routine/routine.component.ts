@@ -10,10 +10,9 @@ import { Router } from '@angular/router';
 })
 export class RoutineComponent {
 
-  @Input('routines') routines;
-  @Input('type') type;
-
-  panelOpenState: boolean = false;
+  @Input('routines') public routines;
+  @Input('type') public type;
+  public panelOpenState: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -21,7 +20,7 @@ export class RoutineComponent {
     private router: Router
   ) { }
 
-  deleteWorkout(id) {
+  public deleteWorkout(id): void {
     this.routineService.deleteRoutine(id)
       .subscribe((_data) => {
         this.router.navigate(['/home']);

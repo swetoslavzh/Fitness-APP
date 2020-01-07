@@ -8,21 +8,19 @@ import { WorkoutService } from 'src/app/core/services/workout.service';
 })
 export class HistoryComponent implements OnInit {
 
-  displayedColumns: Array<string> = ['name', 'date', 'buttons']
-  historyData = [];
+  public displayedColumns: string[] = ['name', 'date', 'buttons']
+  public historyData = [];
 
-  constructor(
-    private workoutService: WorkoutService
-  ) { }
+  constructor(private workoutService: WorkoutService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.workoutService.getHistory()
       .subscribe((data) => {
         this.historyData = data['data'];
       });
   }
 
-  deleteRecord(element) {
+  public deleteRecord(element): void {
     this.workoutService.deleteWorkout(element)
       .subscribe((_data) => {
         this.workoutService.getHistory()

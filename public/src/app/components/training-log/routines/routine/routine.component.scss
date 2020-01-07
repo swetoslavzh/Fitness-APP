@@ -12,8 +12,9 @@ mat-accordion {
   justify-content: space-around;
 }
 
-.start-btn {
-  float: right;
+.action-btns {
+  display: flex;
+  justify-content: space-between;
 }
 
 .no-data {

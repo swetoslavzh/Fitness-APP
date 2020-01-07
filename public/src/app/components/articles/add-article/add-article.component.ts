@@ -11,30 +11,28 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AddArticleComponent implements OnInit {
 
-  articleForm: FormGroup;
+  public articleForm: FormGroup;
   
   constructor(
-    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AddArticleComponent>,
-    private articleService: ArticleService,
-    @Inject(MAT_DIALOG_DATA) public data
+    private fb: FormBuilder,
+    private articleService: ArticleService
   ) { }
   
-  ngOnInit() {
+  public ngOnInit() {
     this.articleForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      content: ['', [ Validators.required, Validators.minLength(10)] ],
-      img: ['', [Validators.required]]
+      title: [null, [ Validators.required, 
+                      Validators.minLength(5), 
+                      Validators.maxLength(50)] ],
+      content: [null, [ Validators.required, 
+                        Validators.minLength(10)] ],
+      img: [null, [Validators.required]]
     });
   }
 
-  addArticle() {
-    const { title, content, img } = this.articleForm.value;
-    let article: Article = {
-      title,
-      content,
-      img
-    }
+  public addArticle() {
+    const article: Article = this.articleForm.value;
     this.articleService.postArticle(article)
       .subscribe((_data) => {
         this.dialogRef.close();

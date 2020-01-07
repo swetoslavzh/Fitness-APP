@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/article.service';
@@ -13,21 +13,21 @@ import { Article } from '../shared/models/article.model';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles: Array<Article>;
-  dialogRef;
+  public articles: Article[];
+  public dialogRef: MatDialogRef<AddArticleComponent>;
 
   constructor(
+    public authService: AuthService,
     public dialog: MatDialog,
-    private route: ActivatedRoute,
     private articleSerivce: ArticleService,
-    public authService: AuthService
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.articles = this.route.snapshot.data.data;
   }
 
-  openDialog() {
+  public openDialog(): void {
     this.dialogRef = this.dialog.open(AddArticleComponent, {
       width: '350px'
     });
@@ -38,5 +38,9 @@ export class ArticlesComponent implements OnInit {
           this.articles = data as Array<Article>;
         })
     });
+  }
+  
+  public isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 }

@@ -1,25 +1,25 @@
 <div class="form">
   <mat-card>
-      <mat-card-title>Add article</mat-card-title>
+    <mat-card-title>Add article</mat-card-title>
     <mat-card-content>
       <form (ngSubmit)="addArticle()" [formGroup]="articleForm">
         <p>
           <mat-form-field>
-            <input 
-              type="email" 
+            <input type="email" 
               formControlName="title"
               matInput 
               placeholder="Title">
               <mat-error *ngIf="articleForm.get('title').hasError('required')">Title is required.</mat-error>
-              <mat-error *ngIf="articleForm.get('title').hasError('minglength') || articleForm.get('title').hasError('maxlength')">Title must be atleast 5 symbols and max 60 symbols.</mat-error>
+              <mat-error *ngIf="articleForm.get('title').hasError('minglength') 
+                            || articleForm.get('title').hasError('maxlength')">
+                            Title must be atleast 5 symbols and max 60 symbols.
+              </mat-error>
           </mat-form-field>
         </p>
   
         <p>
           <mat-form-field>
-
-            <textarea 
-              type="string" 
+            <textarea type="string" 
               formControlName="content"
               matInput 
               placeholder="Content..."
@@ -34,23 +34,22 @@
 
         <p>
           <mat-form-field>
-            <input 
-              type="string" 
+            <input type="string" 
               formControlName="img"
               matInput 
               placeholder="Image">
-              <mat-error *ngIf="articleForm.get('img').hasError('required')">Image is required.</mat-error>
+              <mat-error *ngIf="articleForm.get('img').hasError('required')">
+                Image is required.
+              </mat-error>
           </mat-form-field>
         </p>
         <div class="button">
-          <button 
-            type="submit" 
+          <button type="submit" 
             [disabled]="articleForm.invalid" 
             mat-raised-button 
             color="primary">
             Add Article</button>
         </div>
-  
       </form>
     </mat-card-content>
   </mat-card>

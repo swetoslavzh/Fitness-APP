@@ -5,17 +5,33 @@
       <form (ngSubmit)="calculate()" [formGroup]="calorieForm">
         <p>
           <mat-form-field>
-            <input type="number" formControlName="age" placeholder="Age in years" autocomplete="off" matInput>
-            <mat-error *ngIf="calorieForm.get('age').hasError('required')">Age is required</mat-error>
-            <mat-error *ngIf="calorieForm.get('age').hasError('min')">Age must be bigger then 0</mat-error>
+            <input type="number" 
+                   formControlName="age" 
+                   placeholder="Age in years" 
+                   autocomplete="off" 
+                   matInput>
+            <mat-error *ngIf="calorieForm.get('age').hasError('required')">
+              Age is required
+            </mat-error>
+            <mat-error *ngIf="calorieForm.get('age').hasError('min')">
+              Age must be bigger then 0
+            </mat-error>
           </mat-form-field>
         </p>
       
         <p class="measure-container">
           <mat-form-field>
-            <input type="number" formControlName="weight" placeholder="Weight" autocomplete="off" matInput>
-            <mat-error *ngIf="calorieForm.get('weight').hasError('required')">Weight is required</mat-error>
-            <mat-error *ngIf="calorieForm.get('weight').hasError('min')">Weight must be bigger then 20</mat-error>
+            <input type="number" 
+                   formControlName="weight" 
+                   placeholder="Weight" 
+                   autocomplete="off" 
+                   matInput>
+            <mat-error *ngIf="calorieForm.get('weight').hasError('required')">
+              Weight is required
+            </mat-error>
+            <mat-error *ngIf="calorieForm.get('weight').hasError('min')">
+              Weight must be bigger then 20
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -24,24 +40,33 @@
                 <mat-option value="kg">KG</mat-option> 
                 <mat-option value="lbs">LBS</mat-option> 
             </mat-select> 
-            <mat-error *ngIf="calorieForm.get('weightUnit').hasError('required')">Weight Unit is required</mat-error>
+            <mat-error *ngIf="calorieForm.get('weightUnit').hasError('required')">
+              Weight Unit is required
+            </mat-error>
           </mat-form-field>
         </p>
         
         <p class="measure-container">
           <mat-form-field>
             <input type="number" [min]="0" formControlName="height" placeholder="Height" autocomplete="off" matInput>
-            <mat-error *ngIf="calorieForm.get('height').hasError('required')">Height is required</mat-error>
-            <mat-error *ngIf="calorieForm.get('height').hasError('min')">Height must be bigger then 20</mat-error>
+            <mat-error *ngIf="calorieForm.get('height').hasError('required')">
+              Height is required
+            </mat-error>
+            <mat-error *ngIf="calorieForm.get('height').hasError('min')">
+              Height must be bigger then 20
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field>
             <mat-label>Height Unit</mat-label>
             <mat-select formControlName="heightUnit">
-                <mat-option value="cm">CM</mat-option> 
-                <mat-option value="inches">Inches</mat-option> 
+              <mat-option value="cm">CM</mat-option> 
+              <mat-option value="inches">Inches</mat-option> 
             </mat-select>
-            <mat-error *ngIf="calorieForm.get('heightUnit').hasError('required')">Height Unit is required</mat-error> 
+
+            <mat-error *ngIf="calorieForm.get('heightUnit').hasError('required')">
+              Height Unit is required
+            </mat-error> 
           </mat-form-field>
         </p>
 
@@ -57,24 +82,22 @@
           <mat-form-field>
             <mat-label>Exercise Activity</mat-label>
             <mat-select formControlName="exercise">
-                <mat-option value="none">None (stay in bed all day)</mat-option> 
-                <mat-option value="sedentary">Sedentariness (very little)</mat-option> 
-                <mat-option value="light">Light (1 to 3 days per week)</mat-option> 
-                <mat-option value="moderate">Moderate (3 to 5 days per week)</mat-option> 
-                <mat-option value="hard">Hard (6 days per week)</mat-option> 
-                <mat-option value="nonstop">Non-Stop</mat-option> 
+              <mat-option value="none">None (stay in bed all day)</mat-option> 
+              <mat-option value="sedentary">Sedentariness (very little)</mat-option> 
+              <mat-option value="light">Light (1 to 3 days per week)</mat-option> 
+              <mat-option value="moderate">Moderate (3 to 5 days per week)</mat-option> 
+              <mat-option value="hard">Hard (6 days per week)</mat-option> 
+              <mat-option value="nonstop">Non-Stop</mat-option> 
             </mat-select> 
             <mat-error *ngIf="calorieForm.get('exercise').hasError('required')">Exercise Activity is required</mat-error> 
           </mat-form-field>
         </p>
 
         <div class="button">
-          <button 
-            type="submit" 
-            [disabled]="calorieForm.invalid" 
-            mat-raised-button 
-            color="primary">
-            Calculate</button>
+          <button type="submit" 
+                  [disabled]="calorieForm.invalid" 
+                  mat-raised-button 
+                  color="primary">Calculate</button>
         </div>
       </form>
     </mat-card-content>
@@ -82,11 +105,11 @@
 </div>
 
 <ng-template [ngIf]="dailyCalories && losingFatCalories && muscleGainCalories">
-
   <mat-card class="card">
     <mat-card-header>
       <mat-card-title>Result</mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
       <p>Your Daily Calories: <span class="calorie">{{dailyCalories}}</span> cal</p>
       <p>If you want to loose weight you should intake: <span class="calorie">{{losingFatCalories}}</span> cal</p>

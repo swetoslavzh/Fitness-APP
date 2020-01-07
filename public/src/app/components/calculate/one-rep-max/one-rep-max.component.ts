@@ -9,46 +9,48 @@ import { LiftWeight } from '../../shared/models/lift-weight.model';
 })
 export class OneRepMaxComponent implements OnInit {
 
-  onerepmaxForm: FormGroup;
-  displayedColumns: Array<string> = ['percentage', 'weight', 'reps'];
-  selected = 'kg';
-  oneRepMax: number;
-  liftData: Array<LiftWeight> = [];
+  public onerepmaxForm: FormGroup;
+  public displayedColumns: string[];
+  public selected: string;
+  public oneRepMax: number;
+  public liftData: LiftWeight[];
 
   constructor(
     private fb: FormBuilder
-  ) { }
+  ) {
+    this.displayedColumns = ['percentage', 'weight', 'reps'];
+    this.selected = 'kg';
+    this.liftData = [];
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.onerepmaxForm = this.fb.group({
       lift: ['', [Validators.required, Validators.min(1)] ],
       massunit: ['', Validators.required],
-      sets: ['', [Validators.required, Validators.min(1)] ]
+      reps: ['', [Validators.required, Validators.min(1)] ]
     });
   }
 
-  calculate() {
-    const { lift, massunit, sets } = this.onerepmaxForm.value;
+  public calculate(): void {
+    const { lift, massunit, reps } = this.onerepmaxForm.value;
     this.selected = massunit;
-    this.oneRepMax = this.oneRep(lift, sets);
+    this.oneRepMax = this.oneRep(lift, reps);
     this.createTable();
   }
 
-  oneRep(weight, reps): number {
-    let result = (weight / (1.0278 - 0.0278 * reps ));
+  public oneRep(weight, reps): number {
+    const result = (weight / (1.0278 - 0.0278 * reps ));
     return Math.round(result * 10) / 10;
   }
 
-  createTable() {
-    let percentageChange = 5;
-
+  public createTable(): void {
+    const percentageChange = 5;
     if (this.liftData.length > 0) this.liftData = [];
     
     for (let i = 0; i < 11; i++ ) {
-
-      let percentage = 100 - (percentageChange * i),
-          weight = Math.round((this.oneRepMax * (percentage / 100)) * 10) / 10,
-          reps = i + 1;
+      const percentage = 100 - (percentageChange * i),
+            weight = Math.round((this.oneRepMax * (percentage / 100)) * 10) / 10,
+            reps = i + 1;
 
       this.liftData.push({
         percentage,

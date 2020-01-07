@@ -2,38 +2,58 @@
   <mat-card>
     <mat-card-title>One rep MAX</mat-card-title>
     <mat-card-content>
-      <form (ngSubmit)="calculate()" [formGroup]="onerepmaxForm">
+      <form (ngSubmit)="calculate()" 
+            [formGroup]="onerepmaxForm">
         <p class="lift-container">
           <mat-form-field>
-            <input type="number" [min]="0" formControlName="lift" placeholder="Lift" autocomplete="off" matInput>
-            <mat-error *ngIf="onerepmaxForm.get('lift').hasError('required')">Lift is required</mat-error>
-            <mat-error *ngIf="onerepmaxForm.get('lift').hasError('min')">Lift must be bigger than 0</mat-error>
+            <input type="number" 
+                   [min]="0" 
+                   formControlName="lift" 
+                   placeholder="Lift" 
+                   autocomplete="off" 
+                   matInput>
+            <mat-error *ngIf="onerepmaxForm.get('lift').hasError('required')">
+              Lift is required
+            </mat-error>
+            <mat-error *ngIf="onerepmaxForm.get('lift').hasError('min')">
+              Lift must be bigger than 0
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Select an mass unit</mat-label>
             <mat-select formControlName="massunit" [value]="selected">
-                <mat-option value="kg">kg</mat-option> 
-                <mat-option value="lbs">lbs</mat-option> 
-              </mat-select> 
-              <mat-error *ngIf="onerepmaxForm.get('massunit').hasError('required')">Mass unit is required</mat-error>
+              <mat-option value="kg">kg</mat-option> 
+              <mat-option value="lbs">lbs</mat-option> 
+            </mat-select> 
+            
+            <mat-error *ngIf="onerepmaxForm.get('massunit').hasError('required')">
+              Mass unit is required
+            </mat-error>
           </mat-form-field>
         </p>
       
         <p>
           <mat-form-field>
-            <input type="number" formControlName="sets" placeholder="Sets" autocomplete="off" matInput>
-            <mat-error *ngIf="onerepmaxForm.get('sets').hasError('required')">Sets is required</mat-error>
-            <mat-error *ngIf="onerepmaxForm.get('sets').hasError('min')">Sets must be bigger then 0</mat-error>
+            <input type="number" 
+                   formControlName="reps" 
+                   placeholder="Reps" 
+                   autocomplete="off" 
+                   matInput>
+            <mat-error *ngIf="onerepmaxForm.get('reps').hasError('required')">
+              Reps is required
+            </mat-error>
+            <mat-error *ngIf="onerepmaxForm.get('reps').hasError('min')">
+              Reps must be bigger then 0
+            </mat-error>
           </mat-form-field>
         </p>
+
         <div class="button">
-          <button 
-            type="submit" 
-            [disabled]="onerepmaxForm.invalid" 
-            mat-raised-button 
-            color="primary">
-            Calculate</button>
+          <button type="submit" 
+                  [disabled]="onerepmaxForm.invalid" 
+                  mat-raised-button 
+                  color="primary">Calculate</button>
         </div>
       </form>
     </mat-card-content>
@@ -45,7 +65,6 @@
   <h2>Your one rep max is {{oneRepMax}} {{selected}}</h2>
 
   <table mat-table [dataSource]="liftData" class="mat-elevation-z8">
-
     <ng-container matColumnDef="percentage">
       <th mat-header-cell *matHeaderCellDef> Percentage of 1RM </th>
       <td mat-cell *matCellDef="let element"> {{element.percentage}}% </td>
@@ -65,5 +84,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
 </ng-template>

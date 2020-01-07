@@ -9,19 +9,18 @@ import { RoutineService } from 'src/app/core/services/routine.service';
 })
 export class EditRoutineComponent implements OnInit {
 
-  routine;
+  public routine;
 
   constructor(
     private route: ActivatedRoute,
     private routineService: RoutineService
   ) { }
 
-  ngOnInit() {
-    let id = this.route.snapshot.params.id;
+  public ngOnInit(): void {
+    const id = this.route.snapshot.params.id;
     this.routineService.editRoutine(id)
       .subscribe((data) => {
         this.routine = data;
-        console.log(this.routine);
       })
   }
 

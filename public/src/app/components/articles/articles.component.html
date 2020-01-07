@@ -1,14 +1,15 @@
 <ng-template #articlesContainer>
   <div class="articles">
-    <app-article *ngFor="let article of articles" [article]="article" contentLength="100"></app-article>
+    <div class="article" *ngFor="let article of articles">
+      <single-article [article]="article" contentLength="100"></single-article>
+    </div>
   </div>
 </ng-template>
-<button 
-  *ngIf="authService.isAdmin()"
-  mat-raised-button 
-  color="primary" 
-  class="btn-add-article" 
-  (click)="openDialog()">Add article</button>
+<button *ngIf="isAdmin()"
+        mat-raised-button 
+        color="primary" 
+        class="btn-add-article" 
+        (click)="openDialog()">Add article</button>
 
 <ng-template #noData>
   <h2>There is no articles added</h2>

@@ -6,7 +6,6 @@
 .measure-container {
   display: flex;
   justify-content: space-around;
-
   mat-form-field:first-of-type {
     margin-right: 1em;
   }
@@ -17,7 +16,6 @@
     display: block;
     margin-bottom: 5px;
   }
-
   mat-radio-button {
     margin-right: 1.5rem;
   }

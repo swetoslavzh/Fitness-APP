@@ -7,21 +7,19 @@ import { Article } from 'src/app/components/shared/models/article.model';
 })
 export class ArticleService {
 
-  private url = "http://localhost:5000/articles";
+  private url: string = "http://localhost:5000/articles";
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  getArticles() {
+  public getArticles() {
     return this.http.get(this.url);
   }
 
-  getArticle(id: string) {
+  public getArticle(id: string) {
     return this.http.post(`${this.url}/getArticle`, { id })
   }
 
-  postArticle(article: Article) {
+  public postArticle(article: Article) {
     return this.http.post(this.url, {
       title: article.title,
       content: article.content,
@@ -29,7 +27,7 @@ export class ArticleService {
     });
   }
 
-  editArticle(id: string, article: Article) {
+  public editArticle(id: string, article: Article) {
     return this.http.put(`${this.url}/editArticle`, {
       id,
       title: article.title,

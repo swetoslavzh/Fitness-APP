@@ -11,11 +11,11 @@ import { ExerciseName } from '../../shared/models/exerciseName.model';
 })
 export class AddRoutineComponent implements OnInit {
 
-  routineNameForm: FormGroup;
-  exercisesForm: FormGroup;
-  exercises: FormArray;
-  exerciseNames: Array<ExerciseName>;
-  currentUrl: string;
+  public routineNameForm: FormGroup;
+  public exercisesForm: FormGroup;
+  public exercises: FormArray;
+  public exerciseNames: ExerciseName[];
+  public currentUrl: string;
   
   constructor(
     private fb: FormBuilder,
@@ -24,7 +24,7 @@ export class AddRoutineComponent implements OnInit {
     private routineService: RoutineService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.currentUrl = this.router.url;
     this.routineNameForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]]
@@ -38,7 +38,7 @@ export class AddRoutineComponent implements OnInit {
     this.exerciseNames = this.route.snapshot.data.exerciseNames.data;
   }
 
-  createExercise(): FormGroup {
+  public createExercise(): FormGroup {
     return this.fb.group({
       exerciseName: ['', [Validators.required]],
       sets: ['', [Validators.required, Validators.min(1)]]
@@ -49,11 +49,11 @@ export class AddRoutineComponent implements OnInit {
     return this.exercisesForm.get('exercises') as FormArray;
   }
 
-  addExercise() {
+  public addExercise(): void {
     this.exercises.push(this.createExercise());
   }
 
-  addRoutine() {
+  public addRoutine(): void {
     const name = this.routineNameForm.value.name;
     const exercises = this.exercisesForm.value.exercises;
 

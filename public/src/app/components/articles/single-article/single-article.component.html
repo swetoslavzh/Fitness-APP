@@ -6,7 +6,7 @@
             {{article.title}}
           </a>
         </mat-card-title>
-        <mat-card-subtitle>{{article.date | date:"dd/mm/yyyy"}}</mat-card-subtitle>
+        <mat-card-subtitle>{{article.date | date:"MMMM d, y"}}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image [src]="article.img" alt="Article picture">
       <mat-card-content>

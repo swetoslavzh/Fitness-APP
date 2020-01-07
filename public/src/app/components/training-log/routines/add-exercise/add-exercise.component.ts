@@ -10,7 +10,7 @@ import { ExerciseName } from 'src/app/components/shared/models/exerciseName.mode
   styleUrls: ['./add-exercise.component.scss']
 })
 export class AddExerciseComponent implements OnInit {
-  exerciseForm: FormGroup;
+  public exerciseForm: FormGroup;
   
   constructor(
     private fb: FormBuilder,
@@ -19,16 +19,20 @@ export class AddExerciseComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.exerciseForm = this.fb.group({
-      exerciseName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-      group: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(10)] ]
+      exerciseName: ['', [ Validators.required, 
+                           Validators.minLength(5), 
+                           Validators.maxLength(30)] ],
+      group: ['', [ Validators.required, 
+                    Validators.minLength(3),
+                    Validators.maxLength(10)] ]
     });
   }
 
-  submitExercise() {
+  public submitExercise(): void {
     const { exerciseName, group } = this.exerciseForm.value;
-    let exercise: ExerciseName = { name: exerciseName, group };
+    const exercise: ExerciseName = { name: exerciseName, group };
     this.workoutService.addExercise(exercise).subscribe((_) => {
       this.dialogRef.close();
     });

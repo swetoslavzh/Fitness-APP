@@ -40,14 +40,14 @@ import { HomeComponent } from './components/home/home.component';
   providers: [
     AuthService,
     {
-        provide: HTTP_INTERCEPTORS,
-        useClass: JwtInterceptorService,
-        multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
     },
     {
-        provide: HTTP_INTERCEPTORS,
-        useClass: ResponseHandlerInterceptorService,
-        multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseHandlerInterceptorService,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]

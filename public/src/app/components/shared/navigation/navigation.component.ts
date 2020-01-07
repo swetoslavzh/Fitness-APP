@@ -12,15 +12,15 @@ export class NavigationComponent {
     private authService: AuthService
   ) { }
 
-  logout() {
+  public logout(): void {
     this.authService.logout();
   }
 
-  isAuth(): boolean {
+  public isAuth(): boolean {
     return this.authService.isAuthenticated();
   }
 
-  isAdmin(): boolean {
+  public isAdmin(): boolean {
     return this.authService.isAdmin();
   }
 }

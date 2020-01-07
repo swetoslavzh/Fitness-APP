@@ -17,16 +17,16 @@ const exerciseLevel = {
 })
 export class CalorieComponent implements OnInit {
 
-  calorieForm: FormGroup;
-  dailyCalories: number;
-  losingFatCalories: number;
-  muscleGainCalories: number;
+  public calorieForm: FormGroup;
+  public dailyCalories: number;
+  public losingFatCalories: number;
+  public muscleGainCalories: number;
 
   constructor(
     private fb: FormBuilder
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.calorieForm = this.fb.group({
       age: ['', [ Validators.required, Validators.min(1) ]],
       weight: ['', [ Validators.required, Validators.min(20) ]],
@@ -38,19 +38,19 @@ export class CalorieComponent implements OnInit {
     });
   }
 
-  calculate() {
+  public calculate(): void {
     let { age, weight, weightUnit, height, heightUnit, gender, exercise } = this.calorieForm.value;
 
     if (weightUnit === "lbs") weight = weight / 2.2;
     if (heightUnit === "inches") height = height * 2.54;
 
-    let bmr = this.calcBmr(gender, weight, height, age);
+    const bmr = this.calcBmr(gender, weight, height, age);
     this.dailyCalories = bmr * exerciseLevel[exercise];
     this.losingFatCalories = Math.round(this.dailyCalories - 500);
     this.muscleGainCalories = Math.round(this.dailyCalories + 500);
   }
 
-  calcBmr(gender, weight, height, age): number {
+  public calcBmr(gender, weight, height, age): number {
     let result = (gender === "men") 
       ? ( 66 + (13.7 * weight) + (5 * height) - (6.8 * age) ) 
       : ( 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age) );

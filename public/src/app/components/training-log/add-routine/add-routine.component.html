@@ -4,8 +4,12 @@
       <ng-template matStepLabel>Fill out the name of routine</ng-template>
       <mat-form-field>
         <input matInput placeholder="Routine name" formControlName="name" required>
-        <mat-error *ngIf="routineNameForm.get('name').hasError('required')">Routine name is required.</mat-error>
-        <mat-error *ngIf="routineNameForm.get('name').hasError('minlength')">Routine name must be atleast 5 symbols.</mat-error>
+        <mat-error *ngIf="routineNameForm.get('name').hasError('required')">
+          Routine name is required.
+        </mat-error>
+        <mat-error *ngIf="routineNameForm.get('name').hasError('minlength')">
+          Routine name must be atleast 5 symbols.
+        </mat-error>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -18,16 +22,14 @@
 
       <div formArrayName="exercises">
         <div *ngFor="let exercise of exercisesFormGroup.controls; let i = index;" 
-          class="exercise-container">
-          
+              class="exercise-container">
           <p>
             <mat-form-field [formGroupName]="i">
-             
               <mat-label>Choose exercise</mat-label>
                 <mat-select formControlName="exerciseName">
-                  <mat-optgroup *ngFor="let group of exerciseNames | keyvalue" [label]="group.key | titlecase"
-                                [disabled]="group.disabled"> 
-                  <mat-option *ngFor="let exerciseName of exerciseNames[group.key]" [value]="exerciseName.name">
+                  <mat-optgroup *ngFor="let group of exerciseNames | keyvalue" [label]="group.key | titlecase" [disabled]="group.disabled"> 
+                  <mat-option *ngFor="let exerciseName of exerciseNames[group.key]" 
+                              [value]="exerciseName.name">
                     {{exerciseName.name | titlecase}}
                   </mat-option> 
                 </mat-optgroup>
@@ -37,7 +39,12 @@
 
           <mat-form-field class="input-sets" [formGroupName]="i">
             <mat-label>Sets</mat-label>
-            <input type="number" formControlName="sets" [min]="0" matInput placeholder="Sets" autocomplete="off">
+            <input type="number" 
+                   formControlName="sets" 
+                   [min]="0" 
+                   matInput 
+                   placeholder="Sets" 
+                   autocomplete="off">
           </mat-form-field>
           
         </div>

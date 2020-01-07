@@ -1,13 +1,12 @@
 <div class="article" *ngIf="article">
   <mat-card>
-    <a 
-      *ngIf="authService.isAdmin()"
+    <a *ngIf="authService.isAdmin()"
       mat-stroked-button 
       color="primary"
       [routerLink]="['/articles/edit/', article._id]">Edit</a>
   
     <h1>{{article.title}}</h1>
-    <h5>{{article.date | date:"dd/mm/yyyy hh:mm"}}</h5>
+    <h5>{{article.date | date:"MMMM d, y hh:mm"}}</h5>
 
     <img [src]="article.img" alt="article image" class="article-img">
 

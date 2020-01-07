@@ -6,23 +6,20 @@
 <app-routine [routines]="sampleRoutines" type="sample"></app-routine>
 <mat-divider></mat-divider>
 
-<a
-  class="btn-add" 
+<a class="btn-add" 
   mat-raised-button 
   color="primary"
   routerLink="/training-log/addRoutine">
   Add new routine</a>
 
-<a
-  *ngIf="authService.isAdmin()"
+<a *ngIf="authService.isAdmin()"
   class="btn-add" 
   mat-raised-button 
   color="primary"
   routerLink="/training-log/addSampleRoutine">
   Add new sample routine</a>
 
-<a 
-  *ngIf="authService.isAdmin()"
+<a *ngIf="authService.isAdmin()"
   class="btn-add" 
   mat-raised-button 
   color="primary"

@@ -3,33 +3,36 @@
   <form (ngSubmit)="submitExercise()" [formGroup]="exerciseForm">
     <p>
       <mat-form-field>
-        <input 
-          type="text" 
-          formControlName="exerciseName"
-          matInput 
-          placeholder="Exercise name">
+        <input type="text" 
+               formControlName="exerciseName"
+               matInput 
+               placeholder="Exercise name">
           <mat-error *ngIf="exerciseForm.get('exerciseName').hasError('required')">Exercise name is required.</mat-error>
-          <mat-error *ngIf="exerciseForm.get('exerciseName').hasError('minlength') || exerciseForm.get('exerciseName').hasError('maxlength')">Exercise name must be between 5 and 15 symbols</mat-error>
+          <mat-error *ngIf="exerciseForm.get('exerciseName').hasError('minlength') 
+                          || exerciseForm.get('exerciseName').hasError('maxlength')">
+            Exercise name must be between 5 and 15 symbols
+          </mat-error>
       </mat-form-field>
     </p>
   
     <p>
       <mat-form-field>
-        <input 
-          type="text" 
-          formControlName="group"
-          matInput 
-          placeholder="Group">
-          <mat-error *ngIf="exerciseForm.get('group').hasError('required')">Group is required.</mat-error>
-  <mat-error *ngIf="exerciseForm.get('group').hasError('minlength') || exerciseForm.get('group').hasError('maxlength')">Group must be between 3 and 10 symbols.</mat-error>
+        <input type="text" 
+               formControlName="group"
+               matInput 
+               placeholder="Group">
+          <mat-error *ngIf="exerciseForm.get('group').hasError('required')">
+            Group is required.
+          </mat-error>
+          <mat-error *ngIf="exerciseForm.get('group').hasError('minlength') 
+                          || exerciseForm.get('group').hasError('maxlength')">
+            Group must be between 3 and 10 symbols.
+          </mat-error>
       </mat-form-field>
     </p>
-    <button 
-      type="submit" 
-      [disabled]="exerciseForm.invalid" 
-      mat-raised-button 
-      color="primary">
-      Add exercise</button>
-  
+    <button type="submit" 
+            [disabled]="exerciseForm.invalid" 
+            mat-raised-button 
+            color="primary">Add exercise</button>
   </form>
 </div>

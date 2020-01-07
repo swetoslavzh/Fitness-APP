@@ -11,30 +11,27 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
 
   constructor(private snackBar: MatSnackBar) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(tap((success) => {
       if (success instanceof HttpResponse) {
-        const url = success.url;
-
-        if (url.endsWith('login')) {
-          this.snackBar.open(`Hello ${success.body.user.name}!`, '', {
-            duration: 4000
-          });
+        const urlLastSegment = success.url.split('/').pop();
+      
+        let message: string = null;
+        switch (urlLastSegment) {
+          case 'login':
+            message = `Hello ${success.body.user.name}!`;
+            break;
+          case 'changeRole':
+            message = `Successfully changed user role`;
+            break;
+          case 'postWorkout':
+          case 'addExercise':
+            message = success['body'].message;
+            break;
         }
-
-        if (url.endsWith('changeRole')) {
-          this.snackBar.open(`Successfully changed user role`, '', {
-            duration: 4000
-          });
-        }
-
-        if (url.endsWith('addExercise')) {
-          this.snackBar.open(success['body'].message, '', {
-            duration: 4000
-          });
-        }
-        if (url.endsWith('postWorkout')) {
-          this.snackBar.open(success['body'].message, '', {
+    
+        if (message) {
+          this.snackBar.open(message, '', {
             duration: 4000
           });
         }
@@ -44,6 +41,6 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
         duration: 4000,
       });
       throw err;
-    }))
+    }));
   }
 }

@@ -13,29 +13,29 @@ import { ExerciseName } from '../../shared/models/exerciseName.model';
 export class GraphComponent implements OnInit {
   private label:string = "Overall";
 
-  selected = new FormControl('overall', [Validators.required]);
-  exerciseNames: Array<ExerciseName>;
-  chartData = [];
-  lineChartData: ChartDataSets[];
-  lineChartLabels: Label[];
-  lineChartOptions: ChartOptions = {
+  public selected = new FormControl('overall', [Validators.required]);
+  public exerciseNames: Array<ExerciseName>;
+  public chartData = [];
+  public lineChartData: ChartDataSets[];
+  public lineChartLabels: Label[];
+  public lineChartType: ChartType = 'line';
+  public lineChartPlugins = [];
+  public lineChartLegend = true;
+  public lineChartOptions: ChartOptions = {
     responsive: true,
   };
-  lineChartColors: Color[] = [
+  public lineChartColors: Color[] = [
     {
       borderColor: 'black',
       backgroundColor: 'rgba(0, 51, 255, 0.3)',
     },
   ];
-  lineChartLegend = true;
-  lineChartType: ChartType = 'line';
-  lineChartPlugins = [];
 
   constructor(
     private workoutService: WorkoutService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.workoutService.getExercises()
       .subscribe((names) => {
         this.exerciseNames = names['data'];
@@ -57,30 +57,29 @@ export class GraphComponent implements OnInit {
       });
   }
 
-  selectChange(value) {
+  public selectChange(value): void {
+    if (value === "overall") return;
 
-    if (value !== "overall") {
-      let newLabels = [];
+    let newLabels = [];
 
-      this.workoutService.getExerciseHistory(value)
-        .subscribe((exerciseHistory) => {
-          this.chartData = exerciseHistory['data'].map(exercise => exercise.overallKg);
-          newLabels = exerciseHistory['data'].map(exercise => {
-            let date = new Date(exercise.date);
-            let formatedDate = this.formatDate(date);
+    this.workoutService.getExerciseHistory(value)
+      .subscribe((exerciseHistory) => {
+        this.chartData = exerciseHistory['data'].map(exercise => exercise.overallKg);
+        newLabels = exerciseHistory['data'].map(exercise => {
+          let date = new Date(exercise.date);
+          let formatedDate = this.formatDate(date);
 
-            return formatedDate;
-          })
-
-          this.lineChartData = [
-            { data: this.chartData, label: this.label }
-          ];
-          this.lineChartLabels = newLabels;
+          return formatedDate;
         });
-    }
+
+        this.lineChartData = [
+          { data: this.chartData, label: this.label }
+        ];
+        this.lineChartLabels = newLabels;
+      });
   }
 
-  formatDate(date: Date): string {
+  public formatDate(date: Date): string {
     return `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
   }
 }

@@ -1,7 +1,6 @@
 .lift-container {
   display: flex;
   justify-content: space-around;
-
   mat-form-field:first-of-type {
     margin-right: 1em;
   }
@@ -9,7 +8,7 @@
 
 table {
   width: 90%;
-  margin: 0 auto 1rem auto;
+  margin: 0 auto 1rem;
 }
 
 h2 {

@@ -7,11 +7,9 @@ import { WorkoutService } from '../services/workout.service';
 })
 export class WorkoutResolver implements Resolve<any> {
 
-  constructor(
-    private workoutService: WorkoutService
-  ) {}
+  constructor(private workoutService: WorkoutService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params.id;
     return this.workoutService.getRoutine(id);
   }

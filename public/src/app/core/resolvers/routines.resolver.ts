@@ -9,11 +9,9 @@ import { forkJoin } from 'rxjs';
 })
 export class RoutinesResolver implements Resolve<any> {
 
-  constructor(
-    private routineService: RoutineService
-  ) {}
+  constructor(private routineService: RoutineService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     return forkJoin([
       this.routineService.getUserRoutines(),

@@ -10,23 +10,26 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+  public registerForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
     private authService: AuthService,
+    private fb: FormBuilder,
     private router: Router
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [ Validators.required, Validators.minLength(4)] ]
+      name: ['', [ Validators.required, 
+                   Validators.minLength(2)] ],
+      email: ['', [ Validators.required, 
+                    Validators.email] ],
+      password: ['', [ Validators.required, 
+                       Validators.minLength(4)] ]
     });
   }
 
-  register() {
+  public register(): void {
     const { name, email, password } = this.registerForm.value;
     this.authService.register(name, email, password)
       .subscribe((_data) => {

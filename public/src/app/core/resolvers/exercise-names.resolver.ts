@@ -7,11 +7,9 @@ import { WorkoutService } from 'src/app/core/services/workout.service';
 })
 export class ExerciseNamesResolver implements Resolve<any> {
 
-  constructor(
-    private workoutService: WorkoutService
-  ) {}
+  constructor(private workoutService: WorkoutService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.workoutService.getExercises();
   }
 

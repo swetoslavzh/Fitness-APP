@@ -7,11 +7,9 @@ import { ArticleService } from '../services/article.service';
 })
 export class ArticleResolver implements Resolve<any> {
 
-  constructor(
-    private articleService: ArticleService
-  ) {}
+  constructor(private articleService: ArticleService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.articleService.getArticles();
   }
 }

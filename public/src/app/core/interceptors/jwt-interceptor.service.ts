@@ -10,12 +10,12 @@ export class JwtInterceptorService implements HttpInterceptor {
 
   constructor(private authService: AuthService) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = this.authService.getToken();
-    let jsonReq = req.clone({
-        setHeaders: {
-            Authorization: `Bearer ${token}`
-        }
+  public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.authService.getToken();
+    const jsonReq = req.clone({
+      setHeaders: {
+          Authorization: `Bearer ${token}`
+      }
     }); 
 
     return next.handle(jsonReq);

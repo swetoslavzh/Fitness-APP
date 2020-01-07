@@ -11,7 +11,7 @@ import { User } from '../../shared/models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  public loginForm: FormGroup;
   
   constructor(
     private fb: FormBuilder,
@@ -19,19 +19,17 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
   
-  ngOnInit() {
+  public ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [ Validators.required, Validators.minLength(4)] ]
+      email: ['', [ Validators.required, 
+                    Validators.email] ],
+      password: ['', [ Validators.required, 
+                       Validators.minLength(4)] ]
     });
   }
 
-  login() {
-    const { email, password } = this.loginForm.value;
-    let user: User = {
-      email,
-      password
-    }
+  public login(): void {
+    const user: User = this.loginForm.value;
     this.authService.login(user)
       .subscribe((data) => {
         localStorage.setItem('token', data['token']);

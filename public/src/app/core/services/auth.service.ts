@@ -15,27 +15,27 @@ export class AuthService {
     private router: Router
   ) { }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     return localStorage.getItem('token') !== null;
   }
 
-  isAdmin() {
+  public isAdmin() {
     return localStorage.getItem('isAdmin') === "true";
   }
 
-  login(user: User) {
+  public login(user: User) {
     return this.http.post(this.authUrl + 'login', { email: user.email, password: user.password });
   }
 
-  register(name: string, email: string, password: string) {
+  public register(name: string, email: string, password: string) {
     return this.http.post(this.authUrl + 'register', { name, email, password });
   }
 
-  getToken() { 
+  public  getToken() { 
     return localStorage.getItem('token');
   }
 
-  logout() {
+  public logout() {
     localStorage.clear();
     this.router.navigate(['/home']);
   }
