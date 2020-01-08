@@ -22,6 +22,6 @@ export class RoutinesResolver implements Resolve<any> {
         userRoutines: result[0],
         sampleRoutines: result[1]
       }
-    }))
+    }));
   }
 }

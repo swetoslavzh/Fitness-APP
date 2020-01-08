@@ -10,19 +10,20 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class ArticleFullComponent implements OnInit {
 
-  public article;
+  public article$;
 
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
     public authService: AuthService
-  ) { }
+  ) {}
 
   public ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.articleService.getArticle(id)
-      .subscribe((data) => {
-        this.article = data;
-      });
+    this.article$ = this.articleService.getArticle(id);
+  }
+
+  public deleteArticle( id: string ) {
+    this.articleService.deleteArtice(id);
   }
 }

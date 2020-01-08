@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/core/services/article.service';
-import { Article } from '../../shared/models/article.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
   selector: 'app-add-article',

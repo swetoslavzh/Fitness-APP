@@ -65,5 +65,22 @@ module.exports = {
           message: err.message
         });
       });
+  },
+  deleteArticle: (req, res) => {
+    let id = req.params.id;
+
+    Article.findOneAndDelete({ _id: id })
+      .then((_data) => {
+        return res.status(200).json({
+          success: true,
+          message: 'Article was successfuly deleted'
+        })
+      })
+      .catch((err) => {
+        return res.status(404).json({
+          success: false,
+          message: err.message
+        });
+      });
   }
 };

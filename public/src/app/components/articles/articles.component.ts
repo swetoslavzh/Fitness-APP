@@ -4,7 +4,7 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Article } from '../shared/models/article.model';
+import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
   selector: 'app-articles',
@@ -35,7 +35,7 @@ export class ArticlesComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(_result => {
       this.articleSerivce.getArticles()
         .subscribe((data) => {
-          this.articles = data as Array<Article>;
+          this.articles = data as Article[];
         })
     });
   }

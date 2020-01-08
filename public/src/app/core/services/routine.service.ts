@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { apiUrls } from 'src/app/shared/constants';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoutineService {
-
-  private userRoutineUrl = "http://localhost:5000/user";
-
   constructor(private http: HttpClient) { }
 
-  public getUserRoutines() {
+  public getUserRoutines(): Observable<any> {
     let token = localStorage.getItem('token');
-    return this.http.post(`${this.userRoutineUrl}/getRoutine`, { token });
+    return this.http.post(apiUrls.getRoutine, { token });
   }
 
-  public getSampleRoutines() {
-    return this.http.get(`http://localhost:5000/sampleRoutines`);
+  public getSampleRoutines(): Observable<any> {
+    return this.http.get(apiUrls.sampleRoutines);
   }
 
-  public editRoutine(routineId: string) {
-    return this.http.post('http://localhost:5000/editRoutine', { routineId });
+  public editRoutine(routineId: string): Observable<any> {
+    return this.http.post(apiUrls.editRoutine, { routineId });
   }
 
-  public addRoutine(name: string, routine, currentUrl: string) {
+  public addRoutine(name: string, routine, currentUrl: string): Observable<any> {
     const token = localStorage.getItem('token');
     const urlLastSegment = currentUrl.split('/').pop();
     let url = (urlLastSegment === "addRoutine") 
-      ? `${this.userRoutineUrl}/addRoutine` 
-      : "http://localhost:5000/sampleRoutines";
+      ? apiUrls.addRoutine 
+      : apiUrls.sampleRoutines;
       
     return this.http.post(url, { name, routine, token })
   }
 
-  public deleteRoutine(id: string) {
-    return this.http.delete(`http://localhost:5000/deleteRoutine/${id}`);
+  public deleteRoutine(id: string): Observable<any> {
+    return this.http.delete(`${apiUrls.deleteRoutine}/${id}`);
   }
 }

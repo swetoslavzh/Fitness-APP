@@ -6,7 +6,6 @@ import { WorkoutService } from '../services/workout.service';
   providedIn: 'root'
 })
 export class WorkoutResolver implements Resolve<any> {
-
   constructor(private workoutService: WorkoutService) {}
 
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

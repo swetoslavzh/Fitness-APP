@@ -34,5 +34,6 @@ router.get('/articles', controllers.article.getArticles);
 router.post('/articles', controllers.article.postArticle);
 router.post('/articles/getArticle', controllers.article.getArticle);
 router.put('/articles/editArticle', controllers.article.editArticle);
+router.delete('/articles/deleteArticle/:id', controllers.article.deleteArticle);
 
 module.exports = router;

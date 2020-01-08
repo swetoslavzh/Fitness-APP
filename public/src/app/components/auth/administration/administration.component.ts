@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministrationService } from 'src/app/core/services/administration.service';
 import { Observable } from 'rxjs';
-import { User } from '../../shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-administration',

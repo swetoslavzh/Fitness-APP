@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutService } from 'src/app/core/services/workout.service';
-import { Workout } from '../../shared/models/workout.model';
+import { Workout } from 'src/app/shared/models/workout.model';
 
 @Component({
   selector: 'app-workout',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutineService } from 'src/app/core/services/routine.service';
-import { ExerciseName } from '../../shared/models/exerciseName.model';
+import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
 
 @Component({
   selector: 'app-add-routine',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { Article } from '../../shared/models/article.model';
+import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
   selector: 'app-article-edit',

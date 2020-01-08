@@ -1,10 +1,13 @@
-<div class="article" *ngIf="article">
+<div class="article" *ngIf="article$ | async as article">
   <mat-card>
-    <a *ngIf="authService.isAdmin()"
-      mat-stroked-button 
-      color="primary"
-      [routerLink]="['/articles/edit/', article._id]">Edit</a>
-  
+    <div *ngIf="authService.isAdmin()" class="article-admin-panel">
+      <a mat-stroked-button 
+        color="primary"
+        [routerLink]="['/articles/edit/', article._id]">Edit</a>
+      <a mat-stroked-button 
+        color="warn"
+        (click)="deleteArticle(article._id)">Delete</a>
+    </div>
     <h1>{{article.title}}</h1>
     <h5>{{article.date | date:"MMMM d, y hh:mm"}}</h5>
 

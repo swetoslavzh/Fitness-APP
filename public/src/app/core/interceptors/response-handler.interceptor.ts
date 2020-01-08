@@ -37,9 +37,11 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
         }
       }
     }), catchError((err) => {
-      this.snackBar.open(err.error.message, 'Undo', {
-        duration: 4000,
-      });
+      if (err['error']) {
+        this.snackBar.open(err.error.message, 'Undo', {
+          duration: 4000,
+        });
+      }
       throw err;
     }));
   }

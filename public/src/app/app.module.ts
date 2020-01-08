@@ -13,10 +13,11 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { ArticlesModule } from './components/articles/articles.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
-import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
+
 
 import { HomeComponent } from './components/home/home.component';
+import { AppHttpInterceptorService } from './core/interceptors/app-http.interceptor';
+import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { HomeComponent } from './components/home/home.component';
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
+      useClass: AppHttpInterceptorService,
       multi: true
     },
     {

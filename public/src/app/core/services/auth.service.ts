@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from 'src/app/components/shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
+import { apiUrls } from 'src/app/shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private readonly authUrl = 'http://localhost:5000/auth/';
-
   constructor(
     private http: HttpClient,
     private router: Router
@@ -23,16 +21,16 @@ export class AuthService {
     return localStorage.getItem('isAdmin') === "true";
   }
 
+  public getToken() { 
+    return localStorage.getItem('token');
+  }
+
   public login(user: User) {
-    return this.http.post(this.authUrl + 'login', { email: user.email, password: user.password });
+    return this.http.post(apiUrls.login, { email: user.email, password: user.password });
   }
 
   public register(name: string, email: string, password: string) {
-    return this.http.post(this.authUrl + 'register', { name, email, password });
-  }
-
-  public  getToken() { 
-    return localStorage.getItem('token');
+    return this.http.post(apiUrls.register, { name, email, password });
   }
 
   public logout() {

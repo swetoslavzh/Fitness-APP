@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ExerciseName } from 'src/app/components/shared/models/exerciseName.model';
+import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
 
 @Component({
   selector: 'app-add-exercise',

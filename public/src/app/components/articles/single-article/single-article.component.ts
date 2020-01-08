@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Article } from '../../shared/models/article.model';
+import { Article } from 'src/app/shared/models/article.model';
 
 @Component({
   selector: 'single-article',

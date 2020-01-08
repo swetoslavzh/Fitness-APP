@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Article } from '../shared/models/article.model';
+import { Article } from 'src/app/shared/models/article.model';
+import { homeImagesUrls } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,10 @@ import { Article } from '../shared/models/article.model';
 export class HomeComponent implements OnInit {
 
   public imageUrlArray: string[]; 
-  public articles: Array<Article>;
+  public articles: Article[];
 
   constructor(private route: ActivatedRoute) {
-    this.imageUrlArray = [
-      '../../../assets/wallpaper_1.jpg',
-      '../../../assets/wallpaper_2.jpg',
-      '../../../assets/wallpaper_3.jpg'
-    ];
+    this.imageUrlArray = homeImagesUrls;
   }
 
   public ngOnInit(): void {

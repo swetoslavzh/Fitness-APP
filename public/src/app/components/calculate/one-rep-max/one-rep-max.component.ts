@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LiftWeight } from '../../shared/models/lift-weight.model';
+import { LiftWeight } from 'src/app/shared/models/lift-weight.model';
 
 @Component({
   selector: 'app-one-rep-max',

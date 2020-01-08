@@ -3,7 +3,7 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Validators, FormControl } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
-import { ExerciseName } from '../../shared/models/exerciseName.model';
+import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
 
 @Component({
   selector: 'app-graph',
@@ -14,7 +14,7 @@ export class GraphComponent implements OnInit {
   private label:string = "Overall";
 
   public selected = new FormControl('overall', [Validators.required]);
-  public exerciseNames: Array<ExerciseName>;
+  public exerciseNames: ExerciseName[];
   public chartData = [];
   public lineChartData: ChartDataSets[];
   public lineChartLabels: Label[];
