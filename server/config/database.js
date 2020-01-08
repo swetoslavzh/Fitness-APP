@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/User');
+const seedDataService = require('../services/seed-data.service');
 
 mongoose.Promise = global.Promise;
 
@@ -12,12 +12,17 @@ module.exports = (config) => {
 
     db.once('open', err => {
         if (err) throw err;
-        User.seedAdminUser().then(() => {
-          console.log('MongoDB ready!');
-        }).catch((err) => {
-          console.log('Something went wrong with mongodb');
-          console.error(err);
-        });
+        Promise.all([ 
+          seedDataService.seedAdminAndBasicUser(), 
+          seedDataService.seedArticles(),
+          seedDataService.seedSampleRoutines()
+        ])
+          .then(() => {
+            console.log('MongoDB ready!');
+          }).catch((err) => {
+            console.log('Something went wrong with mongodb');
+            console.error(err);
+          });
     });
     
     db.on('error', err => console.log(`Database error: ${err}`));
