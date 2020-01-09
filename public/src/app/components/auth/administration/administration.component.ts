@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AdministrationService } from 'src/app/core/services/administration.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
@@ -8,10 +8,10 @@ import { User } from 'src/app/shared/models/user.model';
   templateUrl: './administration.component.html',
   styleUrls: ['./administration.component.scss']
 })
-export class AdministrationComponent {
-
+export class AdministrationComponent implements OnDestroy {
   public userData$: Observable<User[]>;
   public displayedColumns: string[];
+  private subscription: Subscription;
 
   constructor(
     private administrationService: AdministrationService
@@ -21,7 +21,12 @@ export class AdministrationComponent {
   }
 
   public changeRole(id, value): void {
-    this.administrationService.changeUserRole(id, [value])
+    this.subscription = this.administrationService.changeUserRole(id, [value])
       .subscribe( (_data) => {} );
   }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+
 }

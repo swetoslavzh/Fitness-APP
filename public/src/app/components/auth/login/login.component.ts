@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
+  private subscripton: Subscription;
   
   constructor(
     private fb: FormBuilder,
@@ -30,12 +31,14 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     const user: User = this.loginForm.value;
-    this.authService.login(user)
+    this.subscripton = this.authService.login(user)
       .subscribe((data) => {
-        localStorage.setItem('token', data['token']);
-        localStorage.setItem('name', data['user'].name);
-        localStorage.setItem('isAdmin', data['user'].isAdmin);
+        this.authService.setLocalData(data);
         this.router.navigate(['/home']);
       });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscripton) this.subscripton.unsubscribe();
   }
 }

@@ -39,9 +39,6 @@ export class ArticleService {
   }
 
   public deleteArtice(id: string) {
-    return this.http.delete(`${apiUrls.deleteAticle}/${id}`)
-      .subscribe((_data) => {
-      this.router.navigate(['/home']);
-    });
+    return this.http.delete(`${apiUrls.deleteAticle}/${id}`);
   }
 }

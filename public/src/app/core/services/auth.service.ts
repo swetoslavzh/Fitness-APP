@@ -33,6 +33,12 @@ export class AuthService {
     return this.http.post(apiUrls.register, { name, email, password });
   }
 
+  public setLocalData(data) {
+    localStorage.setItem('token', data['token']);
+    localStorage.setItem('name', data['user'].name);
+    localStorage.setItem('isAdmin', data['user'].isAdmin);
+  }
+
   public logout() {
     localStorage.clear();
     this.router.navigate(['/home']);

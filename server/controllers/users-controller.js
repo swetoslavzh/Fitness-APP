@@ -132,9 +132,7 @@ module.exports = {
   changeUserRole: (req, res) => {
     const { userId, roles } = req.body;
 
-    User.findOneAndUpdate({_id: userId}, {
-      roles
-    })
+    User.findOneAndUpdate({_id: userId}, { roles }, { uspert: true })
     .then(() => {
       return res.status(200).json({
         success: true,

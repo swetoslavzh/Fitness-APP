@@ -1,16 +1,18 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-exercise',
   templateUrl: './add-exercise.component.html',
   styleUrls: ['./add-exercise.component.scss']
 })
-export class AddExerciseComponent implements OnInit {
+export class AddExerciseComponent implements OnInit, OnDestroy {
   public exerciseForm: FormGroup;
+  private subscription: Subscription;
   
   constructor(
     private fb: FormBuilder,
@@ -33,8 +35,12 @@ export class AddExerciseComponent implements OnInit {
   public submitExercise(): void {
     const { exerciseName, group } = this.exerciseForm.value;
     const exercise: ExerciseName = { name: exerciseName, group };
-    this.workoutService.addExercise(exercise).subscribe((_) => {
+    this.subscription = this.workoutService.addExercise(exercise).subscribe((_) => {
       this.dialogRef.close();
     });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

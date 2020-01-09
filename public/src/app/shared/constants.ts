@@ -1,12 +1,10 @@
-import { environment } from 'src/environments/environment.prod';
-
-export const homeImagesUrls = [
+export const homeImagesUrls: string[] = [
   '../../../assets/wallpaper_1.jpg',
   '../../../assets/wallpaper_2.jpg',
   '../../../assets/wallpaper_3.jpg'
 ];
 
-export const baseUrl = 'http://localhost:5000';
+export const baseUrl: string = 'http://localhost:5000';
 export const apiUrls: any = {
   auth: '/auth',
   login: '/auth/login',

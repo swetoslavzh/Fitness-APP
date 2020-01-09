@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Validators, FormControl } from '@angular/forms';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent implements OnInit {
-  private label:string = "Overall";
-
+export class GraphComponent implements OnInit, OnDestroy {
+  public label:string = "Overall";
   public selected = new FormControl('overall', [Validators.required]);
   public exerciseNames: ExerciseName[];
   public chartData = [];
@@ -30,16 +30,19 @@ export class GraphComponent implements OnInit {
       backgroundColor: 'rgba(0, 51, 255, 0.3)',
     },
   ];
-
+  private subscriptions: Subscription[];
+  
   constructor(
     private workoutService: WorkoutService
-  ) { }
+  ) {
+    this.subscriptions = [];
+  }
 
   public ngOnInit(): void {
-    this.workoutService.getExercises()
+    this.subscriptions.push( this.workoutService.getExercises()
       .subscribe((names) => {
         this.exerciseNames = names['data'];
-      });
+      }),
     this.workoutService.getHistory()
       .subscribe((workouts) => {
         this.chartData = workouts['data'].map(workout => workout.workoutOverallKg);
@@ -54,7 +57,7 @@ export class GraphComponent implements OnInit {
           { data: this.chartData, label: this.label }
         ];
         this.lineChartLabels = dateLabels
-      });
+      }));
   }
 
   public selectChange(value): void {
@@ -62,7 +65,7 @@ export class GraphComponent implements OnInit {
 
     let newLabels = [];
 
-    this.workoutService.getExerciseHistory(value)
+    this.subscriptions.push(this.workoutService.getExerciseHistory(value)
       .subscribe((exerciseHistory) => {
         this.chartData = exerciseHistory['data'].map(exercise => exercise.overallKg);
         newLabels = exerciseHistory['data'].map(exercise => {
@@ -76,10 +79,14 @@ export class GraphComponent implements OnInit {
           { data: this.chartData, label: this.label }
         ];
         this.lineChartLabels = newLabels;
-      });
+      }));
   }
 
   public formatDate(date: Date): string {
     return `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutineService } from 'src/app/core/services/routine.service';
 import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-routine',
   templateUrl: './add-routine.component.html',
   styleUrls: ['./add-routine.component.scss']
 })
-export class AddRoutineComponent implements OnInit {
-
+export class AddRoutineComponent implements OnInit, OnDestroy {
   public routineNameForm: FormGroup;
   public exercisesForm: FormGroup;
   public exercises: FormArray;
   public exerciseNames: ExerciseName[];
   public currentUrl: string;
-  
+  private subscription: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -57,9 +58,13 @@ export class AddRoutineComponent implements OnInit {
     const name = this.routineNameForm.value.name;
     const exercises = this.exercisesForm.value.exercises;
 
-    this.routineService.addRoutine(name, exercises, this.currentUrl)
+    this.subscription = this.routineService.addRoutine(name, exercises, this.currentUrl)
       .subscribe(() => {
         this.router.navigate(['/training-log']);
       });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

@@ -1,17 +1,18 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Article } from 'src/app/shared/models/article.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-article',
   templateUrl: './add-article.component.html',
   styleUrls: ['./add-article.component.scss']
 })
-export class AddArticleComponent implements OnInit {
-
+export class AddArticleComponent implements OnInit, OnDestroy {
   public articleForm: FormGroup;
+  private subscription: Subscription;
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,9 +34,13 @@ export class AddArticleComponent implements OnInit {
 
   public addArticle() {
     const article: Article = this.articleForm.value;
-    this.articleService.postArticle(article)
+    this.subscription = this.articleService.postArticle(article)
       .subscribe((_data) => {
         this.dialogRef.close();
       });
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

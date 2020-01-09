@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutService } from 'src/app/core/services/workout.service';
 import { Workout } from 'src/app/shared/models/workout.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-workout',
   templateUrl: './workout.component.html',
   styleUrls: ['./workout.component.scss']
 })
-export class WorkoutComponent implements OnInit {
-
+export class WorkoutComponent implements OnInit, OnDestroy {
   public workoutForm: FormGroup;
   public kgControls: FormArray;
   public repsControls: FormArray;
   public workout: Workout;
   public displayedColumns: string[];
+  private subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -51,9 +52,14 @@ export class WorkoutComponent implements OnInit {
   
   public submitWorkoutForm(workoutData): void {
     let workoutName = this.workout.name;
-    this.workoutService.postWorkout(workoutName, workoutData)
+    this.subscription = this.workoutService.postWorkout(workoutName, workoutData)
       .subscribe(() => {
         this.router.navigate(['/training-log']); 
       });
   }
+
+  public ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+
 }
