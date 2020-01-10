@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { RoutineService } from 'src/app/core/services/routine.service';
+import { RoutineService } from 'src/app/components/training-log/routines/routine.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

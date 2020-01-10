@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
 import { AddExerciseComponent } from './routines/add-exercise/add-exercise.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
-import { ExerciseNamesResolver } from 'src/app/core/resolvers/exercise-names.resolver';
 import { WorkoutComponent } from './workout/workout.component';
-import { RoutinesResolver } from 'src/app/core/resolvers/routines.resolver';
-import { WorkoutResolver } from 'src/app/core/resolvers/workout.resolver';
-import { EditRoutineComponent } from './edit-routine/edit-routine.component';
+import { RoutinesResolver } from 'src/app/components/training-log/routines/routine/routines.resolver';
+import { WorkoutResolver } from 'src/app/components/training-log/workout/workout.resolver';
+import { ExerciseNamesResolver } from '../../core/resolvers/exercise-names.resolver';
+// import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 
 const routes: Routes = [
   {

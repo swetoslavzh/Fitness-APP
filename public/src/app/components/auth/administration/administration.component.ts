@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AdministrationService } from 'src/app/core/services/administration.service';
+import { AdministrationService } from 'src/app/components/auth/administration/administration.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 

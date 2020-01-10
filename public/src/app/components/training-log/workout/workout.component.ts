@@ -51,7 +51,7 @@ export class WorkoutComponent implements OnInit, OnDestroy {
   }
   
   public submitWorkoutForm(workoutData): void {
-    let workoutName = this.workout.name;
+    const workoutName = this.workout.name;
     this.subscription = this.workoutService.postWorkout(workoutName, workoutData)
       .subscribe(() => {
         this.router.navigate(['/training-log']); 

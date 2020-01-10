@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Article } from 'src/app/shared/models/article.model';
 import { apiUrls } from 'src/app/shared/constants';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) { }
 
   public getArticles() {

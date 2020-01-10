@@ -12,5 +12,4 @@ export class ExerciseNamesResolver implements Resolve<any> {
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.workoutService.getExercises();
   }
-
 }

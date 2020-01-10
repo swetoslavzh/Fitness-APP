@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { RoutineService } from '../services/routine.service';
+import { RoutineService } from '../routine.service';
 import { map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 

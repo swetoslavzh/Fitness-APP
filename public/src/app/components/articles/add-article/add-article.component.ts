@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ArticleService } from 'src/app/core/services/article.service';
+import { ArticleService } from 'src/app/components/articles/article.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Article } from 'src/app/shared/models/article.model';
 import { Subscription } from 'rxjs';

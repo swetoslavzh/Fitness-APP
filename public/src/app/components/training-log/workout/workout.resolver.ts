@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { WorkoutService } from '../services/workout.service';
+import { WorkoutService } from '../../../core/services/workout.service';
 
 @Injectable({
   providedIn: 'root'

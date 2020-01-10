@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from 'src/app/core/services/article.service';
+import { ArticleService } from 'src/app/components/articles/article.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Article } from 'src/app/shared/models/article.model';
 import { Subscription } from 'rxjs';

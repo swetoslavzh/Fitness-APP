@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoutineService } from 'src/app/core/services/routine.service';
+import { RoutineService } from 'src/app/components/training-log/routines/routine.service';
 import { ExerciseName } from 'src/app/shared/models/exerciseName.model';
 import { Subscription } from 'rxjs';
 
