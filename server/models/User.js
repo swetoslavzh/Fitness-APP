@@ -31,23 +31,4 @@ userSchema.method({
 });
 
 const User = mongoose.model('User', userSchema);
-
-User.seedAdminUser = async () => {
-  try {
-    let users = await User.find();
-    if (users.length > 0) return;
-    const salt = encryption.generateSalt();
-    const hashedPass = encryption.generateHashedPassword(salt, 'Admin');
-    return User.create({
-      name: 'Admin',
-      email: 'admin@admin.com',
-      salt,
-      hashedPass,
-      roles: ['Admin']
-    });
-  } catch (e) {
-    return done("User with this email already exists!");
-  }
-};
-
 module.exports = User;

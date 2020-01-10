@@ -1,36 +1,33 @@
 const fs = require('fs');
 const path = require('path');
+const encryption = require('../utilities/encryption');
 const User = require('../models/User');
 const Article = require('../models/Article');
 const Routine = require('../models/Routine');
 
 async function seedAdminAndBasicUser() {
-  try {
-    const users = await User.find();
-    if (users.length > 0) return;
+  const users = await User.find();
+  if (users.length > 0) return;
 
-    const saltAdmin = encryption.generateSalt();
-    const hashedPassAdmin = encryption.generateHashedPassword(salt, 'Admin');
-    User.create({
-      name: 'Admin',
-      email: 'admin@admin.com',
-      salt: saltAdmin,
-      hashedPass: hashedPassAdmin,
-      roles: ['Admin']
-    });
+  const saltAdmin = encryption.generateSalt();
+  const hashedPassAdmin = encryption.generateHashedPassword(saltAdmin, 'Admin');
+  User.create({
+    name: 'Admin',
+    email: 'admin@admin.com',
+    salt: saltAdmin,
+    hashedPass: hashedPassAdmin,
+    roles: ['Admin']
+  });
 
-    const saltUser = encryption.generateSalt();
-    const hashedPassUser = encryption.generateHashedPassword(salt, 'test123');
-    User.create({
-      name: 'Svetoslav',
-      email: 'swetoslavj@gmail.com',
-      salt: saltUser,
-      hashedPass: hashedPassUser,
-      roles: []
-    });
-  } catch (e) {
-    return done("User with this email already exists!");
-  }
+  const saltUser = encryption.generateSalt();
+  const hashedPassUser = encryption.generateHashedPassword(saltUser, 'test123');
+  User.create({
+    name: 'Svetoslav',
+    email: 'swetoslavj@gmail.com',
+    salt: saltUser,
+    hashedPass: hashedPassUser,
+    roles: []
+  });
 };
 
 async function seedArticles() {
