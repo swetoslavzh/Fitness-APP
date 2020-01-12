@@ -1,9 +1,3 @@
-export const homeImagesUrls: string[] = [
-  '../../../assets/wallpaper_1.jpg',
-  '../../../assets/wallpaper_2.jpg',
-  '../../../assets/wallpaper_3.jpg'
-];
-
 export const baseUrl: string = 'http://localhost:5000';
 export const apiUrls: any = {
   auth: '/auth',
@@ -30,3 +24,18 @@ export const apiUrls: any = {
   workoutGetWorkout: '/workout/getWorkout',
   workoutDeleteWorkout: '/workout/deleteWorkout'
 }
+
+export const homeImagesUrls: string[] = [
+  '../../../assets/wallpaper_1.jpg',
+  '../../../assets/wallpaper_2.jpg',
+  '../../../assets/wallpaper_3.jpg'
+];
+
+export const exerciseLevel = {
+  "none": 1,
+  "sedentary": 1.2,
+  "light": 1.375,
+  "moderate": 1.55,
+  "hard": 1.725,
+  "non-stop": 1.9
+};

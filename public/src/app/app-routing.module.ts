@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { CalorieComponent } from './components/calculate/calorie/calorie.component';
-import { OneRepMaxComponent } from './components/calculate/one-rep-max/one-rep-max.component';
-import { ArticlesComponent } from './components/articles/articles.component';
-import { AddArticleComponent } from './components/articles/add-article/add-article.component';
-import { ArticleFullComponent } from './components/articles/article-full/article-full.component';
-import { ArticleEditComponent } from './components/articles/article-edit/article-edit.component';
-
-import { ArticleResolver } from './core/resolvers/article.resolver';
-import { AdminGuard } from './core/guards/admin.guard';
-import { AuthGuard } from './core/guards/auth.guard';
-import { AdministrationComponent } from './components/auth/administration/administration.component';
+import { AdministrationComponent } from './authenticated/administration/administration.component';
+import { HomeComponent } from './unauthenticated/home/home.component';
+import { LoginComponent } from './unauthenticated/login/login.component';
+import { RegisterComponent } from './unauthenticated/register/register.component';
+import { CalorieComponent } from './unauthenticated/calculate/calorie/calorie.component';
+import { OneRepMaxComponent } from './unauthenticated/calculate/one-rep-max/one-rep-max.component';
+import { ArticlesComponent } from './unauthenticated/articles/articles.component';
+import { AddArticleComponent } from './unauthenticated/articles/lib/add-article/add-article.component';
+import { ArticleFullComponent } from './unauthenticated/articles/lib/article-full/article-full.component';
+import { ArticleEditComponent } from './unauthenticated/articles/lib/add-article/lib/article-edit/article-edit.component';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ArticleResolver } from './shared/resolvers/article.resolver';
 
 const routes: Routes = [
   {
@@ -36,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'training-log',
-    loadChildren: './components/training-log/training-log.module#TrainingLogModule',
+    loadChildren: './authenticated/training-log/training-log.module#TrainingLogModule',
     canActivate: [AuthGuard]
   },
   {

@@ -4,39 +4,30 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './core/services/auth.service';
-import { MaterialModule } from './core/material.module';
-import { AuthModule } from './components/auth/auth.module';
-import { CalculateModule } from './components/calculate/calculate.module';
-import { SharedModule } from './components/shared/shared.module';
-import { SlideshowModule } from 'ng-simple-slideshow';
-import { ArticlesModule } from './components/articles/articles.module';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-
-import { HomeComponent } from './components/home/home.component';
-import { AppHttpInterceptorService } from './core/interceptors/app-http.interceptor';
-import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler.interceptor';
+import { MaterialModule } from './shared/material.module';
+import { AuthService } from './shared/services/auth.service';
+import { AppHttpInterceptorService } from './shared/interceptors/app-http.interceptor';
+import { ResponseHandlerInterceptorService } from './shared/interceptors/response-handler.interceptor';
+import { AuthenticatedModule } from './authenticated/authenticated.module';
+import { UnauthenticatedModule } from './unauthenticated/unathenticated.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
+    AuthenticatedModule,
+    UnauthenticatedModule,
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    BrowserAnimationsModule,
-    AuthModule,
-    CalculateModule,
-    SharedModule,
-    ArticlesModule,
-    SlideshowModule
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
