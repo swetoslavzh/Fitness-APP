@@ -4,6 +4,7 @@ const encryption = require('../utilities/encryption');
 const User = require('../models/User');
 const Article = require('../models/Article');
 const Routine = require('../models/Routine');
+const ExericiseName = require('../models/ExericiseName');
 
 async function seedAdminAndBasicUser() {
   const users = await User.find();
@@ -64,8 +65,29 @@ async function seedSampleRoutines() {
   }
 }
 
+async function seedExerciseNames() {
+  const exerciseNames = await ExericiseName.find();
+  if (exerciseNames.length > 0) return;
+
+  const exerciseNamesJSON = fs.readFileSync(path.join(__dirname, '../data') + '/exercise-names.json');
+  const exerciseNamesObj = JSON.parse(exerciseNamesJSON).pop();
+
+  for (const exerciseKey in exerciseNamesObj) {
+    const group = exerciseNamesObj[exerciseKey];
+    
+    for (const exercise of group) {
+      ExericiseName.create({
+        "name": exercise.name,
+        "group": exercise.group
+      });
+    }
+  }
+}
+
+
 module.exports = {
   seedAdminAndBasicUser,
   seedArticles,
-  seedSampleRoutines
+  seedSampleRoutines,
+  seedExerciseNames
 }

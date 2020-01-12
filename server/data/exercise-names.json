@@ -1,0 +1,128 @@
+[{
+  "legs": [{
+    "_id": "5cc0bf431241c03c140b54e0",
+    "name": "squat - barbel",
+    "group": "legs",
+    "__v": 0
+  }, {
+    "_id": "5cc0bf8d1241c03c140b54e4",
+    "name": "leg curls",
+    "group": "legs",
+    "__v": 0
+  }, {
+    "_id": "5cc0bfc71241c03c140b54e7",
+    "name": "romanian deadlift",
+    "group": "legs",
+    "__v": 0
+  }, {
+    "_id": "5cc0bfcf1241c03c140b54e8",
+    "name": "calve raises",
+    "group": "legs",
+    "__v": 0
+  }, {
+    "_id": "5cc0c02c1241c03c140b54ee",
+    "name": "leg extensions",
+    "group": "legs",
+    "__v": 0
+  }],
+  "shoulders": [{
+    "_id": "5cc0bf5f1241c03c140b54e1",
+    "name": "db overhead press",
+    "group": "shoulders",
+    "__v": 0
+  }, {
+    "_id": "5cc0bfea1241c03c140b54ea",
+    "name": "cable lateral raise",
+    "group": "shoulders",
+    "__v": 0
+  }, {
+    "_id": "5cc0c0561241c03c140b54f0",
+    "name": "overhead press - barbell",
+    "group": "shoulders",
+    "__v": 0
+  }, {
+    "_id": "5cc15e108471021cec4b2998",
+    "name": "face pull",
+    "group": "shoulders",
+    "__v": 0
+  }],
+  "back": [{
+    "_id": "5cc0bf6b1241c03c140b54e2",
+    "name": "pull-up",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc0bfde1241c03c140b54e9",
+    "name": "unilateral machine row",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc0c01d1241c03c140b54ed",
+    "name": "db row",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc0c05f1241c03c140b54f1",
+    "name": "lat prayer",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc0c1e91241c03c140b54f6",
+    "name": "bent-over row",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc15cfa8471021cec4b2996",
+    "name": "deadlift",
+    "group": "back",
+    "__v": 0
+  }, {
+    "_id": "5cc15e248471021cec4b2999",
+    "name": "wide-grip lat pulldown",
+    "group": "back",
+    "__v": 0
+  }],
+  "chest": [{
+    "_id": "5cc0bf731241c03c140b54e3",
+    "name": "db bench press",
+    "group": "chest",
+    "__v": 0
+  }, {
+    "_id": "5cc0bfb41241c03c140b54e6",
+    "name": "bench press",
+    "group": "chest",
+    "__v": 0
+  }, {
+    "_id": "5cc0c03c1241c03c140b54ef",
+    "name": "flyes",
+    "group": "chest",
+    "__v": 0
+  }],
+  "triceps": [{
+    "_id": "5cc0bfa81241c03c140b54e5",
+    "name": "triceps cable pressdown",
+    "group": "triceps",
+    "__v": 0
+  }, {
+    "_id": "5cc0c08a1241c03c140b54f2",
+    "name": "overhead triceps extension",
+    "group": "triceps",
+    "__v": 0
+  }, {
+    "_id": "5cc15e438471021cec4b299a",
+    "name": "ez-bar skullcrusher",
+    "group": "triceps",
+    "__v": 0
+  }],
+  "biceps": [{
+    "_id": "5cc0bff21241c03c140b54eb",
+    "name": "bayesian curl",
+    "group": "biceps",
+    "__v": 0
+  }, {
+    "_id": "5cc0bff91241c03c140b54ec",
+    "name": "barbell curl",
+    "group": "biceps",
+    "__v": 0
+  }]
+}]

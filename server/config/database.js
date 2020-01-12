@@ -15,7 +15,8 @@ module.exports = (config) => {
         Promise.all([ 
           seedDataService.seedAdminAndBasicUser(), 
           seedDataService.seedArticles(),
-          seedDataService.seedSampleRoutines()
+          seedDataService.seedSampleRoutines(),
+          seedDataService.seedExerciseNames()
         ])
           .then(() => {
             console.log('MongoDB ready!');
